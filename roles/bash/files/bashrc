@@ -2,7 +2,11 @@
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-export PATH="/opt/homebrew/bin:${PATH}"
+if [ "$(uname -p)" == 'arm' ]; then
+  export PATH="/opt/homebrew/bin:${PATH}"
+elif [ "$(uname -p)" == 'i386' ]; then
+  export PATH="/usr/local/bin:${PATH}"
+fi
 
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
