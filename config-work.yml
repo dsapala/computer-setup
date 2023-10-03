@@ -8,7 +8,6 @@ dockitems_persist: []
 configure_homebrew: true
 homebrew_taps:
   - hashicorp/tap
-  - homebrew/cask-drivers
   - infrahq/tap
   - johanhaleby/kubetail
   - tilt-dev/tap

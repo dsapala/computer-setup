@@ -234,24 +234,11 @@ endif
 
 colorscheme industry " set a default colorscheme
 
-let base16colorspace=256
-
-function! HasColorScheme(name) abort
-  let pat = 'colors/'.a:name.'.vim'
-  return !empty(globpath(&rtp, pat))
-endfunction
-
-function! SetBase16Colorscheme()
-  if !empty($BASE16_THEME) && HasColorScheme("base16-tomorrow-night")
-    if filereadable(expand("$HOME/.vimrc_background"))
-      source $HOME/.vimrc_background
-    else
-      colorscheme "base16-tomorrow-night"
-    endif
-  endif
-endfunction
-
-call SetBase16Colorscheme()
+if exists('$BASE16_THEME')
+      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
+  let base16colorspace=256
+  colorscheme base16-$BASE16_THEME
+endif
 
 let s:uname = system("uname")
 if has("gui_running")

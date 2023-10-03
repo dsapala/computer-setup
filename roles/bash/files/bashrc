@@ -2,6 +2,8 @@
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+export PATH="/opt/homebrew/bin:${PATH}"
+
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
   if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then

@@ -1,5 +1,5 @@
 - name: place psqlrc file
   copy:
     src: psqlrc
-    dest: "{{ ansible_env.HOME }}/.psqlrc
+    dest: "{{ ansible_env.HOME }}/.psqlrc"
 
