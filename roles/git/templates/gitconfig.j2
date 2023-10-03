@@ -4,11 +4,15 @@
 [user]
 	name = Dan sapala
 	email = {{ work_email }}
-	#signingkey = TEMP
-# [commit]
-# 	gpgSign = true
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEoq/fkowBwEZPVjHPTZWcVHb2fdgCn53p0e7s2em8G
 [github]
 	user = dsapalawork
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+	gpgsign = true
 {% else %}
 [user]
 	name = Dan sapala
