@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+open -na "IntelliJ IDEA.app" --args "$@"
+

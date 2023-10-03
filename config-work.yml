@@ -1,0 +1,119 @@
+---
+configure_command_line_tools: false
+
+configure_dock: false
+dockitems_remove: []
+dockitems_persist: []
+
+configure_homebrew: true
+homebrew_taps:
+  - hashicorp/tap
+  - homebrew/cask-drivers
+  - infrahq/tap
+  - johanhaleby/kubetail
+  - tilt-dev/tap
+  - warrensbox/tap
+
+homebrew_installed_packages:
+  - ack
+  - autoconf
+  - automake
+  - awscli
+  - bash
+  - bash-completion@2
+  - borkdude/brew/babashka
+  - cfssl
+  - conftest
+  - coreutils
+  - cowsay
+  - crane
+  - ctags
+  - curl
+  - diffutils
+  - direnv
+  - findutils
+  - gawk
+  - gettext
+  - gh
+  - git
+  - git-delta
+  - git-lfs
+  - gnu-getopt
+  - gnu-sed
+  - gnu-tar
+  - gnutls
+  - go
+  - gpg
+  - grep
+  - hashicorp/tap/consul
+  - hashicorp/tap/nomad
+  - hashicorp/tap/packer
+  - hcl2json
+  - helm
+  - htop
+  - iam-policy-json-to-terraform
+  - ifstat
+  - imagemagick
+  - infrahq/tap/infra
+  - iperf
+  - iperf3
+  - jmeter
+  - jq
+  - kops
+  - krew
+  - kubebuilder
+  - kubectx
+  - kubernetes-cli
+  - kubetail
+  - libevent
+  - linkerd
+  - mcrypt
+  - minikube
+  - mtr
+  - ncdu
+  - ncurses
+  - netcat
+  - nmap
+  - node
+  - nvm
+  - openssl
+  - pre-commit
+  - pv
+  - pwgen
+  - pyenv
+  - readline
+  - reattach-to-user-namespace
+  - ripgrep
+  - rlwrap
+  - rsync
+  - shellcheck
+  - socat
+  - sops
+  - sqlite
+  - ssh-copy-id
+  - stern
+  - terraform-docs
+  - tflint
+  - tfswitch
+  - the_silver_searcher
+  - tig
+  - tilt-dev/tap/ctlptl
+  - tilt-dev/tap/tilt
+  - tmux
+  - tree
+  - vault
+  - vim
+  - watch
+  - wget
+  - wrk
+  - xz
+  - yq
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - iterm2
+  - maccy
+  - rectangle
+  - session-manager-plugin
+  - visual-studio-code
+

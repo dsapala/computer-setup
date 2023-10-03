@@ -1,0 +1,45 @@
+*myhelp.txt*
+*myhelp*
+
+==============================================================================
+1. Contents						*myhelp-contents* {{{1
+
+1.  Contents..............................................|myhelp-contents|
+2.  Vim diff..............................................|myhelp-vimdiff|
+      Settings............................................|myhelp-vimdiff-settings|
+      Commands............................................|myhelp-vimdiff-commands|
+3.  Vim mergetool.........................................|myhelp-vimmergetool|
+      Commands............................................|myhelp-vimmergetool-commands|
+
+==============================================================================
+2. Vim diff					*myhelp-vimdiff* {{{1
+
+	Vim diff is cool.
+
+Settings			*myhelp-vimdiff-settings* {{{2
+
+	set diffopt+=iwhite - ignore whitespace
+
+Commands			*myhelp-vimdiff-commands* {{{2
+
+	`]c`          - next difference
+	`[c`          - previous difference
+	`do`          - diff obtain
+	`dp`          - diff put
+	`zo`          - open folded text
+	`zc`          - close folded text
+	`:diffupdate` - re-scan the files for differences
+
+3. Vim mergetool					*myhelp-vimmergetool* {{{1
+
+	Vim mergetool is cool.
+
+Commands			*myhelp-vimmergetool-commands* {{{2
+
+	`]c`        - next difference
+	`[c`        - previous difference
+	`:diffg RE` - get from REMOTE
+	`:diffg BA` - get from BASE
+	`:diffg LO` - get from LOCAL
+	`:wqa`      - save all and quit when done
+

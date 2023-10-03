@@ -1,0 +1,13 @@
+# ex: ts=2 sw=2 et filetype=sh
+
+export GOOGLE_SSH_KEY=~/.ssh/id_ed25519
+
+export GOVERSION=go1.21.1
+export GOHOME="${HOME}/go"
+export GOSDK="${GOHOME}/sdk"
+export GO="${GOSDK}/${GOVERSION}/bin/go"
+export GOFMT="${GOSDK}/${GOVERSION}/bin/gofmt"
+export GOROOT="${GOSDK}/${GOVERSION}"
+
+export PATH="${GOROOT}/bin:$PATH"
+

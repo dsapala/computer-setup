@@ -1,0 +1,34 @@
+# ex: ts=2 sw=2 et filetype=sh
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+case "$-" in
+  *i*) (>&2 echo 'this shell is interactive') ;;
+  *)	 (>&2 echo 'this shell is NOT interactive') ;;
+esac
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export LANG=en_US.UTF-8
+export LC_ALL=$LANG
+
+export TERM='xterm-256color'
+
+export CLICOLOR=1
+
+stty stop undef
+
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+        base16_tomorrow-night
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+  # include .bashrc if it exists
+  if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+  fi
+fi
+

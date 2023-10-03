@@ -1,0 +1,6 @@
+---
+- name: place pythonrc.py file
+  copy:
+    src: pythonrc.py
+    dest: "{{ ansible_env.HOME }}/.pythonrc.py"
+

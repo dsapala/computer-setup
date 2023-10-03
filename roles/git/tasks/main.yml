@@ -1,0 +1,11 @@
+---
+- name: place gitconfig file
+  template:
+    src: gitconfig.j2
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+
+- name: place gitignore_global
+  copy:
+    src: gitignore_global
+    dest: "{{ ansible_env.HOME }}/.gitignore_global"
+

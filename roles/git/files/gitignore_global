@@ -1,0 +1,8 @@
+.DS_Store
+tmux-*.log
+.idea
+node_modules
+.tmp
+Session.vim
+.vscode
+

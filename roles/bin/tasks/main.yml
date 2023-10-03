@@ -1,0 +1,9 @@
+---
+- name: create bin dir in home dir
+  file:
+    path: "{{ ansible_env.HOME }}/bin"
+    state: directory
+
+- name: sync bin dir
+  command: rsync -aP "{{ role_path }}/files/" "{{ ansible_env.HOME }}/bin/"
+

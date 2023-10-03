@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2001
+
+set -eu -o pipefail
+
+dir="$( pwd )"
+
+if [ -z "${tmx_bottom_pane_size:-}" ]; then
+  tmx_bottom_pane_size=20
+fi
+
+session="$(echo "${PWD##*/}" | sed -e 's/[^A-Za-z0-9_-]/_/g')"
+
+if [ -n "${1:-}" ]; then
+  session="$1"
+fi
+
+has_session_exit_code=0
+tmux has-session -t "$session" 2> /dev/null || has_session_exit_code="$?"
+
+if [ "$has_session_exit_code" -ne "0" ]; then
+  tmux new-session -s "$session" -n vim -d
+  tmux split-window -v -t "$session"
+  tmux select-layout -t "$session" main-horizontal
+  tmux resize-pane -t "$session:1.2" -D $tmx_bottom_pane_size
+  tmux send-keys -t "$session:1.1" "cd $dir" C-m
+  tmux send-keys -t "$session:1.1" "vim" C-m
+  tmux send-keys -t "$session:1.2" "cd $dir" C-m
+  tmux send-keys -t "$session:1.2" "clear" C-m
+  tmux new-window
+  tmux rename-window bash
+  tmux send-keys -t "$session" "cd $dir" C-m
+  tmux send-keys -t "$session" "clear" C-m
+  tmux select-window -t "$session:1"
+  tmux select-pane -t "$session:1.1"
+fi
+
+conf_file="$HOME/.tmux/$session"
+mkdir -p "$HOME/.tmux"
+
+if [ ! -f "$conf_file" ]; then
+  touch "$conf_file"
+  echo "# ex: ts=2 sw=2 et filetype=tmux" >> "$conf_file"
+fi
+
+if [ "$has_session_exit_code" -ne "0" ]; then
+  tmux send-keys -t "$session:1.2" "tmux source-file -q $conf_file" C-m
+  tmux send-keys -t "$session:1.2" "tmux display 'using extra source file: $conf_file'" C-m
+  tmux send-keys -t "$session:1.2" "clear" C-m
+fi
+
+exec tmux attach -t "$session"
+

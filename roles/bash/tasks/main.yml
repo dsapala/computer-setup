@@ -1,0 +1,17 @@
+---
+- name: place bash_profile file
+  copy:
+    src: bash_profile
+    dest: "{{ ansible_env.HOME }}/.bash_profile"
+
+- name: place bashrc file
+  copy:
+    src: bashrc
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+
+- name: place work bashrc file
+  copy:
+    src: work-bashrc
+    dest: "{{ ansible_env.HOME }}/.profile-work/bashrc"
+  when: profile == "work"
+

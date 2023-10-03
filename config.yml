@@ -1,0 +1,164 @@
+---
+configure_command_line_tools: true
+
+configure_dock: true
+dockitems_remove:
+  - Launchpad
+  - Safari
+  - Messages
+  - Mail
+  - Maps
+  - Photos
+  - FaceTime
+  - Calendar
+  - Contacts
+  - Reminders
+  - Notes
+  - TV
+  - Music
+  - Podcasts
+  - News
+  - 'App Store'
+  - 'System Preferences'
+dockitems_persist: []
+
+configure_homebrew: true
+homebrew_taps:
+  - 1password/tap
+  - hashicorp/tap
+  - homebrew/cask-drivers
+  - infrahq/tap
+  - johanhaleby/kubetail
+  - tilt-dev/tap
+
+homebrew_installed_packages:
+  - ack
+  - autoconf
+  - automake
+  - awscli
+  - bash
+  - bash-completion@2
+  - borkdude/brew/babashka
+  - cfssl
+  - conftest
+  - coreutils
+  - cowsay
+  - crane
+  - ctags
+  - curl
+  - diffutils
+  - direnv
+  - findutils
+  - gawk
+  - gettext
+  - gh
+  - git
+  - git-delta
+  - git-lfs
+  - gnu-getopt
+  - gnu-sed
+  - gnu-tar
+  - gnutls
+  - go
+  - golang-migrate
+  - gpg
+  - grep
+  - hashicorp/tap/consul
+  - hashicorp/tap/nomad
+  - hashicorp/tap/packer
+  - hcl2json
+  - helm
+  - htop
+  - iam-policy-json-to-terraform
+  - ifstat
+  - imagemagick
+  - infrahq/tap/infra
+  - iperf
+  - iperf3
+  - jmeter
+  - jq
+  - kops
+  - krew
+  - kubebuilder
+  - kubectx
+  - kubernetes-cli
+  - kubetail
+  - libevent
+  - linkerd
+  - mcrypt
+  - minikube
+  - mtr
+  - ncdu
+  - ncurses
+  - netcat
+  - nmap
+  - node
+  - nvm
+  - openssl
+  - pre-commit
+  - pv
+  - pwgen
+  - pyenv
+  - readline
+  - reattach-to-user-namespace
+  - ripgrep
+  - rlwrap
+  - rsync
+  - shellcheck
+  - socat
+  - sops
+  - sqlite
+  - ssh-copy-id
+  - stern
+  - terraform-docs
+  - tflint
+  - the_silver_searcher
+  - tig
+  - tilt-dev/tap/ctlptl
+  - tilt-dev/tap/tilt
+  - tmux
+  - tree
+  - vault
+  - vim
+  - warrensbox/tap/tfswitch
+  - watch
+  - wget
+  - wrk
+  - xz
+  - yq
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - 1password
+  - 1password-cli
+  - audio-hijack
+  - bartender
+  - beyond-compare
+  - carbon-copy-cloner
+  - cinch
+  - cursorsense
+  - evernote
+  - farrago
+  - firefox
+  - fission
+  - gpg-suite-no-mail
+  - istat-menus
+  - iterm2
+  - jetbrains-toolbox
+  - loopback
+  - maccy
+  - rectangle
+  - session-manager-plugin
+  - sizeup
+  - snagit
+  - soundsource
+  - sourcetree
+  - spotify
+  - steermouse
+  - typora
+  - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
+  - visual-studio-code
+  - wacom-tablet
+

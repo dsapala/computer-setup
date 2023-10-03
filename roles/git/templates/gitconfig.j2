@@ -1,0 +1,107 @@
+# ex: ts=4 sw=4 noet filetype=gitconfig
+
+{% if profile == "work" %}
+[user]
+	name = Dan sapala
+	email = {{ work_email }}
+	#signingkey = TEMP
+# [commit]
+# 	gpgSign = true
+[github]
+	user = dsapalawork
+{% else %}
+[user]
+	name = Dan sapala
+	email = dsapala@gmail.com
+[github]
+	user = dsapala
+{% endif %}
+[color]
+	ui = true
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	dfw = diff --ws-error-highlight=all
+	dfc = diff --cached
+	dfcw = diff --cached --ws-error-highlight=all
+	lg = log
+	lgp = log -p
+	dt = difftool
+	ap = add --patch
+	mv = branch -m
+	pu = push -u origin HEAD
+	ll = log --graph --all  --decorate --oneline
+	root = rev-parse --show-toplevel
+[branch]
+	autosetuprebase = always
+	autosetupmerge = true
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	keepBackup = false
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[mergetool "vimdiff"]
+	layout = "MERGED"
+[git-tmbundle]
+	show-diff-check = no
+[core]
+	filemode = false
+	excludesfile = ~/.gitignore_global
+	trustctime = false
+	ignorecase = false
+	pager = less -R
+	editor = vim
+[rerere]
+	enabled = 1
+[push]
+	default = simple
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	required = true
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+[gitflow "prefix"]
+	feature = feature-
+	release = release-
+	hotfix = hotfix-
+	support = support-
+	bugfix = bugfix-
+	versiontag = v
+[gitflow "branch"]
+	master = master
+	develop = develop
+[init]
+	defaultBranch = main
+[gpg]
+	program = gpg
+# interferes with pre-commit
+# [log]
+# 	showSignature = true
+

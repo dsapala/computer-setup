@@ -1,0 +1,20 @@
+---
+- name: create tmux dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - ~/.tmux
+    - ~/.tmux/plugins
+
+- name: clone tpm
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
+    version: v3.0.0
+
+- name: place tmux conf file
+  copy:
+    src: tmux.conf
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+

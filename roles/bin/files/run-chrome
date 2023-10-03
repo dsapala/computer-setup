@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+chrome_sessions_dir="${HOME}/chrome-sessions"
+
+session="chrome-session"
+
+if [ -n "$1" ]; then
+  session="$session-$1"
+fi
+
+work_dir="${chrome_sessions_dir}/${session}"
+
+mkdir -p "$work_dir"
+
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$work_dir"
+
