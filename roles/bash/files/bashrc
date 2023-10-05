@@ -255,9 +255,9 @@ alias diff-favorite="diff --color --exclude=.git -r -W 250 -y --suppress-common-
 
 # source /usr/local/bin/virtualenvwrapper.sh
 
-complete -C /usr/local/bin/terraform terraform
+complete -C "${HOME}/bin/terraform" terraform
 alias tf=terraform
-complete -C /usr/local/bin/terraform tf
+complete -C "${HOME}/bin/terraform" tf
 alias ssh-no-config-or-agent="ssh -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias scp-no-config-or-agent="scp -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias ssh-force-password="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
