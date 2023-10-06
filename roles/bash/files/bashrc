@@ -3,18 +3,28 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 if [ "$(uname -p)" == 'arm' ]; then
-  export PATH="/opt/homebrew/bin:${PATH}"
+  export HOMEBREW_PREFIX="/opt/homebrew";
 elif [ "$(uname -p)" == 'i386' ]; then
-  export PATH="/usr/local/bin:${PATH}"
+  export HOMEBREW_PREFIX="/opt/local";
 fi
 
+export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
+export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew";
+export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_UPGRADE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_ANALYTICS=1
+
 if type brew &>/dev/null; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
   if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
   else
     for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+      [[ -r "$COMPLETION" ]] && . "$COMPLETION"
     done
   fi
 fi
@@ -60,12 +70,6 @@ export GOPATH="$HOME/go"
 
 export PATH="$PATH:$NODEJS_BIN:$(brew --prefix)/opt/go/libexec/bin:$GOPATH/bin"
 
-export BREW_PREFIX="/usr/local"
-export HOMEBREW_NO_AUTO_UPDATE=1
-export HOMEBREW_NO_INSTALL_UPGRADE=1
-export HOMEBREW_NO_INSTALL_CLEANUP=1
-export HOMEBREW_NO_ANALYTICS=1
-
 ### Added by the Heroku Toolbelt
 # export PATH="/usr/local/heroku/bin:$PATH"
 
@@ -110,7 +114,8 @@ alias cs='printf "\033c"'
 alias mkt="make -qp | awk -F':' '/^[a-zA-Z0-9][^\$\#\\/\\t=]*:([^=]|$)/ {split(\$1,A,/ /);for(i in A)print A[i]}' | sort -u"
 
 # git
-if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
+if [ -f "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
+  . "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
   PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 fi
 

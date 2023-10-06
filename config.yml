@@ -62,6 +62,7 @@ homebrew_installed_packages:
   - golang-migrate
   - gpg
   - grep
+  - grepcidr
   - hashicorp/tap/consul
   - hashicorp/tap/nomad
   - hashicorp/tap/packer
