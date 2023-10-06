@@ -281,9 +281,6 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 ## temp bin
 export PATH="/opt/bin:$PATH"
 
-## postgres app
-export PATH="/Applications/Postgres.app/Contents/Versions/14/bin:$PATH"
-
 ## vim iced
 # export PATH=$PATH:${HOME}/.janus/vim-iced/bin
 
