@@ -63,6 +63,9 @@ nno Y y$
 " nno <leader>p v$<Left>pgvy
 nno <leader>p v$<Left>p
 
+" commenting
+nmap <leader>/ gcc
+vmap <leader>/ gc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom bindings
