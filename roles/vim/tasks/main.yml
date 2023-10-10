@@ -15,8 +15,13 @@
     - "plugged"
 
 - name: sync .vim dir
-  command: rsync -aP "{{ role_path }}/files/" "{{ ansible_env.HOME }}/.vim/"
+  command: rsync -aP "{{ role_path }}/files/dotvim/" "{{ ansible_env.HOME }}/.vim/"
 
 - name: PlugInstall
   command: vim -c ":PlugInstall | qa!"
+
+- name: place .ideavimrc file
+  copy:
+    src: dotideavimrc
+    dest: "{{ ansible_env.HOME }}/.ideavimrc"
 
