@@ -9,6 +9,7 @@ configure_homebrew: true
 homebrew_taps:
   - hashicorp/tap
   - infrahq/tap
+  - jmespath/jmespath
   - johanhaleby/kubetail
   - tilt-dev/tap
   - warrensbox/tap
@@ -58,6 +59,7 @@ homebrew_installed_packages:
   - iperf
   - iperf3
   - jmeter
+  - jmespath/jmespath/jp
   - jq
   - kops
   - krew

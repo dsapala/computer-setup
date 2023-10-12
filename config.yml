@@ -27,6 +27,7 @@ homebrew_taps:
   - 1password/tap
   - hashicorp/tap
   - infrahq/tap
+  - jmespath/jmespath
   - johanhaleby/kubetail
   - tilt-dev/tap
 
@@ -76,6 +77,7 @@ homebrew_installed_packages:
   - iperf
   - iperf3
   - jmeter
+  - jmespath/jmespath/jp
   - jq
   - kops
   - krew
