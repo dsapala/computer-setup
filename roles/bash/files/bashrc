@@ -241,6 +241,16 @@ EOF
     --entrypoint ${entrypointpath} google/cloud-sdk /bin/bash
 }
 
+# rancher desktop
+if [ -f "${HOME}/.rd/bin/docker" ]; then
+  export PATH="${HOME}/.rd/bin:${PATH}"
+fi
+
+# docker desktop
+if [ -f "${HOME}/.docker/bin" ]; then
+  export PATH="${HOME}/.docker/bin:$PATH"
+fi
+
 # kubernetes
 source <(kubectl completion bash)
 

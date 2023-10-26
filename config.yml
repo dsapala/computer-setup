@@ -140,6 +140,7 @@ homebrew_cask_apps:
   - carbon-copy-cloner
   - cinch
   - cursorsense
+  - docker
   - evernote
   - farrago
   - firefox
