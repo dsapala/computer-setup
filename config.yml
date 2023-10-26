@@ -40,6 +40,7 @@ homebrew_installed_packages:
   - bash-completion@2
   - borkdude/brew/babashka
   - cfssl
+  - clojure/tools/clojure
   - conftest
   - coreutils
   - cowsay
@@ -76,8 +77,8 @@ homebrew_installed_packages:
   - infrahq/tap/infra
   - iperf
   - iperf3
-  - jmeter
   - jmespath/jmespath/jp
+  - jmeter
   - jq
   - kops
   - krew
