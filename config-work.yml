@@ -115,6 +115,7 @@ homebrew_installed_packages:
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - docker
+  - firefox
   - iterm2
   - maccy
   - rectangle
