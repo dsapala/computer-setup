@@ -113,6 +113,7 @@ homebrew_installed_packages:
   - sqlite
   - ssh-copy-id
   - stern
+  - telnet
   - terraform-docs
   - tflint
   - the_silver_searcher
