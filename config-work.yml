@@ -32,6 +32,7 @@ homebrew_installed_packages:
   - curl
   - diffutils
   - direnv
+  - emscripten
   - findutils
   - gawk
   - gettext
@@ -47,6 +48,7 @@ homebrew_installed_packages:
   - gpg
   - grep
   - grepcidr
+  - hashicorp/tap/boundary
   - hashicorp/tap/consul
   - hashicorp/tap/nomad
   - hashicorp/tap/packer
