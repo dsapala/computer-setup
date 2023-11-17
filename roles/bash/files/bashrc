@@ -265,6 +265,16 @@ tmux_colors() {
 }
 
 alias tmux-colors=tmux_colors
+
+_tma() {
+  tmux_sessions="$(tmux ls -F '#S' | xargs)"
+
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=( $(compgen -W "$tmux_sessions" -- "$cur") )
+}
+complete -F _tma tma
+alias tma='tmux attach -t $1'
+
 alias sha1sum="shasum"
 alias sha256sum="shasum -a 256"
 alias sha512sum="shasum -a 512"
