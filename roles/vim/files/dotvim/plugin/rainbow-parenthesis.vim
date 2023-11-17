@@ -1,6 +1,2 @@
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-" au Syntax * RainbowParenthesesLoadChevrons
+let g:rainbow_active = 1
 

@@ -24,7 +24,7 @@ if filereadable(expand("$HOME/.vim/autoload/plug.vim"))
   Plug 'jeetsukumaran/vim-buffergator'
   Plug 'jpalardy/vim-slime', { 'branch': 'main' }
   Plug 'junegunn/gv.vim'
-  Plug 'kien/rainbow_parentheses.vim'
+  Plug 'luochen1990/rainbow'
   Plug 'martinda/Jenkinsfile-vim-syntax'
   Plug 'mg979/vim-visual-multi'
   Plug 'michaeljsmith/vim-indent-object'
