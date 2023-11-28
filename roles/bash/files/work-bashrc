@@ -11,3 +11,13 @@ export GOROOT="${GOSDK}/${GOVERSION}"
 
 export PATH="${GOROOT}/bin:$PATH"
 
+# shellcheck disable=SC3044
+complete -C "${HOMEBREW_PREFIX}/bin/boundary" boundary
+
+export BOUNDARY_ADDR=https://prod-boundary.ieops.io:9200
+# unset BOUNDARY_SCOPE_ID
+# # shellcheck disable=SC2155
+# export BOUNDARY_SCOPE_ID="$(boundary scopes list -format=json | jq -ecr '.items | map(select(.name | contains ("ie-aws"))) | .[] .id')"
+# # shellcheck disable=SC2155
+# export BOUNDARY_SCOPES="$(boundary scopes list -format=json | jq '.items[] | {id, name}')"
+
