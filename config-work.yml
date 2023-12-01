@@ -7,6 +7,8 @@ dockitems_persist: []
 
 configure_homebrew: true
 homebrew_taps:
+  - 1password/tap
+  - clojure-lsp/brew
   - hashicorp/tap
   - infrahq/tap
   - jmespath/jmespath
@@ -23,6 +25,7 @@ homebrew_installed_packages:
   - bash-completion@2
   - borkdude/brew/babashka
   - cfssl
+  - clojure-lsp/brew/clojure-lsp-native
   - clojure/tools/clojure
   - conftest
   - coreutils
@@ -81,6 +84,7 @@ homebrew_installed_packages:
   - netcat
   - nmap
   - node
+  - nvim
   - nvm
   - openssl
   - pre-commit
