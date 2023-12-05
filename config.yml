@@ -70,6 +70,7 @@ homebrew_installed_packages:
   - hashicorp/tap/consul
   - hashicorp/tap/nomad
   - hashicorp/tap/packer
+  - hashicorp/tap/terraform-ls
   - hcl2json
   - helm
   - htop

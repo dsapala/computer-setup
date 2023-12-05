@@ -52,10 +52,11 @@ homebrew_installed_packages:
   - grep
   - grepcidr
   - hashicorp/tap/boundary
-  - hashicorp/tap/hashicorp-boundary-desktop
   - hashicorp/tap/consul
+  - hashicorp/tap/hashicorp-boundary-desktop
   - hashicorp/tap/nomad
   - hashicorp/tap/packer
+  - hashicorp/tap/terraform-ls
   - hcl2json
   - helm
   - htop
