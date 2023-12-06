@@ -2,9 +2,11 @@
 
 export GOOGLE_SSH_KEY=~/.ssh/id_ed25519
 
-export GOVERSION=go1.21.5
+if [ -z "${GOVERSION:-}" ]; then
+  export GOVERSION=go1.21.5
+fi
 export GOHOME="${HOME}/go"
-export GOSDK="${GOHOME}/sdk"
+export GOSDK="${HOME}/sdk"
 export GO="${GOSDK}/${GOVERSION}/bin/go"
 export GOFMT="${GOSDK}/${GOVERSION}/bin/gofmt"
 export GOROOT="${GOSDK}/${GOVERSION}"
