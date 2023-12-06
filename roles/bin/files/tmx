@@ -19,12 +19,12 @@ has_session_exit_code=0
 tmux has-session -t="$session" 2> /dev/null || has_session_exit_code="$?"
 
 if [ "$has_session_exit_code" -ne "0" ]; then
-  tmux new-session -s "$session" -n vim -d
+  tmux new-session -s "$session" -n nvim -d
   tmux split-window -v -t "$session"
   tmux select-layout -t "$session" main-horizontal
   tmux resize-pane -t "$session:1.2" -y "$tmx_bottom_pane_size"
   tmux send-keys -t "$session:1.1" "cd $dir" C-m
-  tmux send-keys -t "$session:1.1" "vim" C-m
+  tmux send-keys -t "$session:1.1" "nvim" C-m
   tmux send-keys -t "$session:1.2" "cd $dir" C-m
   tmux send-keys -t "$session:1.2" "clear" C-m
   tmux new-window
