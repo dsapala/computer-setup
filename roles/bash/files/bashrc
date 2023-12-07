@@ -64,8 +64,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # export JAVA_HOME="$(/usr/libexec/java_home -v 13.0.2)"
 # export JAVA_HOME="$(/usr/libexec/java_home -v 16.0.1)"
 
-export NODE_PATH=/usr/local/lib/node
-export NODEJS_BIN=/usr/local/share/npm/bin
+# export NODE_PATH=/usr/local/lib/node
+# export NODEJS_BIN=/usr/local/share/npm/bin
 export ANT_HOME=/usr/share/ant/
 export MAVEN_HOME=/usr/share/maven/
 
