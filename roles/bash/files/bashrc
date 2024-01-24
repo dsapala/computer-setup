@@ -274,6 +274,7 @@ _tma() {
 }
 complete -F _tma tma
 alias tma='tmux attach -t $1'
+alias tmls='tmux ls'
 
 alias sha1sum="shasum"
 alias sha256sum="shasum -a 256"
