@@ -8,6 +8,7 @@ dockitems_persist: []
 configure_homebrew: true
 homebrew_taps:
   - 1password/tap
+  - carvel-dev/carvel
   - clojure-lsp/brew
   - hashicorp/tap
   - infrahq/tap
@@ -121,6 +122,7 @@ homebrew_installed_packages:
   - wrk
   - xz
   - yq
+  - ytt
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:

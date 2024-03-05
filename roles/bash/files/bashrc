@@ -32,6 +32,9 @@ fi
 # 1password
 export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
+# shellcheck disable=SC1091
+. "${HOME}/.config/op/plugins.sh"
+
 # for compatibility with tmux since the new (@2) bash completion script
 # won't re-source when tmux opens
 # for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
