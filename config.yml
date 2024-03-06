@@ -27,6 +27,7 @@ homebrew_taps:
   - 1password/tap
   - carvel-dev/carvel
   - clojure-lsp/brew
+  - git-chglog/git-chglog
   - hashicorp/tap
   - infrahq/tap
   - jmespath/jmespath
@@ -44,6 +45,7 @@ homebrew_installed_packages:
   - cfssl
   - clojure-lsp/brew/clojure-lsp-native
   - clojure/tools/clojure
+  - commitizen
   - conftest
   - coreutils
   - cowsay
@@ -58,6 +60,7 @@ homebrew_installed_packages:
   - gettext
   - gh
   - git
+  - git-chglog
   - git-delta
   - git-lfs
   - gnu-getopt
