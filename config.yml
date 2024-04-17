@@ -32,6 +32,7 @@ homebrew_taps:
   - infrahq/tap
   - jmespath/jmespath
   - johanhaleby/kubetail
+  - minamijoyo/hcledit
   - tilt-dev/tap
 
 homebrew_installed_packages:
@@ -97,6 +98,7 @@ homebrew_installed_packages:
   - libevent
   - linkerd
   - mcrypt
+  - minamijoyo/hcledit/hcledit
   - minikube
   - mtr
   - ncdu
