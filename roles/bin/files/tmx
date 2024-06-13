@@ -9,7 +9,7 @@ if [ -z "${tmx_bottom_pane_size:-}" ]; then
   tmx_bottom_pane_size="25%"
 fi
 
-session="$(echo "${PWD##*/}" | sed -e 's/[^A-Za-z1-9_-]/_/g')"
+session="$(echo "${PWD##*/}" | sed -e 's/[^A-Za-z1-9_-]/_/g' | tr '[:upper:]' '[:lower:]')"
 
 if [ -n "${1:-}" ]; then
   session="$1"
