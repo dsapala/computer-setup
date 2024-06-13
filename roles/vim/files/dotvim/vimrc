@@ -7,7 +7,7 @@ if filereadable(expand("$HOME/.vim/autoload/plug.vim"))
   Plug 'AndrewRadev/linediff.vim'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'airblade/vim-gitgutter'
-  Plug 'chriskempson/base16-vim'
+  Plug 'tinted-theming/base16-vim'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'easymotion/vim-easymotion', { 'tag': 'v3.0.1' }
   Plug 'ervandew/supertab'
@@ -24,6 +24,7 @@ if filereadable(expand("$HOME/.vim/autoload/plug.vim"))
   Plug 'jeetsukumaran/vim-buffergator'
   Plug 'jpalardy/vim-slime', { 'branch': 'main' }
   Plug 'junegunn/gv.vim'
+  " Plug 'kien/rainbow_parentheses.vim'
   Plug 'luochen1990/rainbow'
   Plug 'martinda/Jenkinsfile-vim-syntax'
   Plug 'mg979/vim-visual-multi'
@@ -234,15 +235,9 @@ endif
 
 colorscheme industry " set a default colorscheme
 
-if exists('$BASE16_THEME')
-      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
+if exists('$BASE16_THEME') && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
   let base16colorspace=256
   colorscheme base16-$BASE16_THEME
-endif
-
-if filereadable(expand("$HOME/.config/tinted-theming/set_theme.vim"))
-  let base16colorspace=256
-  source $HOME/.config/tinted-theming/set_theme.vim
 endif
 
 let s:uname = system("uname")
@@ -504,6 +499,7 @@ au BufRead,BufNewFile *.nomad set filetype=terraform | normal zR
 au BufRead,BufNewFile *.nomad normal zR
 au BufRead,BufNewFile */.ssh/config* set filetype=sshconfig
 
+let g:paredit_mode = 0
 let g:clojure_align_multiline_strings = 0
 let g:clojure_fuzzy_indent = 1
 " let g:clojure_fuzzy_indent_patterns = ['with', 'def', 'let']
