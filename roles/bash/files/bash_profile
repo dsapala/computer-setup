@@ -28,5 +28,6 @@ fi
 
 [ -n "$PS1" ] && \
   [ "$(which tinty)" ] && \
-    tinty apply base16-tomorrow-night
+    tinty apply base16-tomorrow-night && \
+    export BASE16_THEME=tomorrow-night
 
