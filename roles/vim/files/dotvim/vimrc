@@ -493,10 +493,7 @@ au BufRead,BufNewFile *.twig set filetype=mustache
 au BufRead,BufNewFile *.twig syntax on
 au BufRead,BufNewFile *.php syntax on
 au BufRead,BufNewFile *.py.schema set filetype=yaml
-au BufRead,BufNewFile *.hcl set filetype=terraform | normal zR
-au BufRead,BufNewFile *.hcl normal zR
-au BufRead,BufNewFile *.nomad set filetype=terraform | normal zR
-au BufRead,BufNewFile *.nomad normal zR
+au BufRead,BufNewFile *.nomad set filetype=hcl | normal zR
 au BufRead,BufNewFile */.ssh/config* set filetype=sshconfig
 
 let g:paredit_mode = 0
