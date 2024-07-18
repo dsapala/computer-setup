@@ -15,3 +15,8 @@
     dest: "{{ ansible_env.HOME }}/.profile-work/bashrc"
   when: profile == "work"
 
+- name: place ctags file
+  copy:
+    src: ctags
+    dest: "{{ ansible_env.HOME }}/.ctags
+

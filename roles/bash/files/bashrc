@@ -119,6 +119,7 @@ alias ll='ls -al'
 alias cs='printf "\033c"'
 alias mkt="make -qp | awk -F':' '/^[a-zA-Z0-9][^\$\#\\/\\t=]*:([^=]|$)/ {split(\$1,A,/ /);for(i in A)print A[i]}' | sort -u"
 alias sort-ips="sort -t . -k 3,3n -k 4,4n"
+alias review='rg -A 3 "(FIX|NOTE|BUG|REVIEW|TODO|HACK|OPTIMIZE):?\s+"'
 
 # git
 if [ -f "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then

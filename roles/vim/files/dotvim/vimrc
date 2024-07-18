@@ -50,6 +50,7 @@ if filereadable(expand("$HOME/.vim/autoload/plug.vim"))
   Plug 'vim-syntastic/syntastic'
   Plug 'wesQ3/vim-windowswap'
   Plug 'chrisbra/NrrwRgn'
+  Plug 'github/copilot.vim'
 
   "Plug 'sheerun/vim-polyglot'
 
@@ -747,4 +748,28 @@ if &diff
   map <leader>dgb :diffget BASE<CR>
   map <leader>dgr :diffget REMOTE<CR>
 endif
+
+" ctags
+set tags=./.dls-ignore-tags;/
+
+function! DelTagOfFile(file)
+  let fullpath = a:file
+  let cwd = getcwd()
+  let tagfilename = cwd . "/.dls-ignore-tags"
+  let f = substitute(fullpath, cwd . "/", "", "")
+  let f = escape(f, './')
+  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
+  let resp = system(cmd)
+endfunction
+
+function! UpdateTags()
+  let f = expand("%:p")
+  let cwd = getcwd()
+  let tagfilename = cwd . "/.dls-ignore-tags"
+  let cmd = 'ctags -a -f ' . tagfilename . ' ' . '"' . f . '"'
+  call DelTagOfFile(f)
+  let resp = system(cmd)
+endfunction
+
+autocmd BufWritePost * :call UpdateTags()
 
