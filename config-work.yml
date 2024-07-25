@@ -50,7 +50,9 @@ homebrew_installed_packages:
   - git
   - git-chglog
   - git-delta
+  - git-gui
   - git-lfs
+  - git-svn
   - gnu-getopt
   - gnu-sed
   - gnu-tar
