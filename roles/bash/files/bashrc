@@ -246,12 +246,12 @@ EOF
 }
 
 # rancher desktop
-if [ -f "${HOME}/.rd/bin/docker" ]; then
+if [ -d "${HOME}/.rd/bin/docker" ]; then
   export PATH="${HOME}/.rd/bin:${PATH}"
 fi
 
 # docker desktop
-if [ -f "${HOME}/.docker/bin" ]; then
+if [ -d "${HOME}/.docker/bin" ]; then
   export PATH="${HOME}/.docker/bin:$PATH"
 fi
 
