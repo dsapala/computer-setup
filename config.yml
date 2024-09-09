@@ -76,6 +76,7 @@ homebrew_installed_packages:
   - gpg
   - grep
   - grepcidr
+  - grpcurl
   - hashicorp/tap/consul
   - hashicorp/tap/nomad
   - hashicorp/tap/packer

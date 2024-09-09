@@ -61,6 +61,7 @@ homebrew_installed_packages:
   - gpg
   - grep
   - grepcidr
+  - grpcurl
   - hashicorp/tap/boundary
   - hashicorp/tap/consul
   - hashicorp/tap/hashicorp-boundary-desktop
