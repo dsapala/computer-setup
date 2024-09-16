@@ -23,3 +23,7 @@ export BOUNDARY_ADDR=https://prod-boundary.ieops.io:9200
 # # shellcheck disable=SC2155
 # export BOUNDARY_SCOPES="$(boundary scopes list -format=json | jq '.items[] | {id, name}')"
 
+if command -v jira 1>/dev/null 2>&1; then
+  eval "$(jira --completion-script-bash)"
+fi
+
