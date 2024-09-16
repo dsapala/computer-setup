@@ -58,6 +58,7 @@ homebrew_installed_packages:
   - gnu-tar
   - gnutls
   - go
+  - go-jira
   - gpg
   - grep
   - grepcidr

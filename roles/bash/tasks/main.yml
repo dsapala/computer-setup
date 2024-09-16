@@ -18,5 +18,17 @@
 - name: place ctags file
   copy:
     src: ctags
-    dest: "{{ ansible_env.HOME }}/.ctags
+    dest: "{{ ansible_env.HOME }}/.ctags"
+
+- name: create work go-jira dir
+  file:
+    type: directory
+    path: "{{ ansible_env.HOME }}/.jira.d"
+  when: profile == "work"
+
+- name: place go-jira config file
+  copy:
+    src: go-jira-config.yml
+    dest: "{{ ansible_env.HOME }}/.jira.d/config.yml"
+  when: profile == "work"
 
