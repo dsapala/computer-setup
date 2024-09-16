@@ -90,6 +90,7 @@ homebrew_installed_packages:
   - infrahq/tap/infra
   - iperf
   - iperf3
+  - jd
   - jmespath/jmespath/jp
   - jmeter
   - jq
