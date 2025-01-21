@@ -5,9 +5,7 @@ export GOOGLE_SSH_KEY=~/.ssh/id_ed25519
 # go install golang.org/dl/go1.23.5@latest
 # go1.23.5 download
 
-if [ -z "${GOVERSION:-}" ]; then
-  export GOVERSION=go1.23.5
-fi
+[ -z "${GOVERSION:-}" ] && export GOVERSION=go1.23.5
 export GOHOME="${HOME}/go"
 export GOSDK="${HOME}/sdk"
 export GO="${GOSDK}/${GOVERSION}/bin/go"
