@@ -122,6 +122,7 @@ alias sort-ips="sort -t . -k 3,3n -k 4,4n"
 alias review='rg -A 3 "(FIX|NOTE|BUG|REVIEW|TODO|HACK|OPTIMIZE):?\s+"'
 alias tg-clean='find . \( \( -type d -name ".terragrunt-cache" \) -or \( -type f -name "terragrunt-debug.tfvars.json" \) \) -exec rm -rf "{}" \+ -print'
 alias tf-clean='find . -type d -name ".terraform" -exec rm -rf "{}" \+ -print'
+alias tflock-clean='find . -type f -name ".terraform.lock.hcl" -exec rm -rf "{}" \+ -print'
 
 # git
 if [ -f "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
@@ -285,7 +286,7 @@ alias tmls='tmux ls'
 alias sha1sum="shasum"
 alias sha256sum="shasum -a 256"
 alias sha512sum="shasum -a 512"
-alias diff-favorite="diff --color --exclude=.git -r -W 250 -y --suppress-common-lines"
+alias diff-favorite="diff --color=always --exclude=.git -r -W 250 -y --suppress-common-lines"
 
 # tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; printf "\n"; rm -f $tmpfile; }
 
