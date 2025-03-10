@@ -7,7 +7,7 @@ if filereadable(expand("$HOME/.vim/autoload/plug.vim"))
   Plug 'AndrewRadev/linediff.vim'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'airblade/vim-gitgutter'
-  Plug 'tinted-theming/base16-vim'
+  Plug 'tinted-theming/tinted-vim'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'easymotion/vim-easymotion', { 'tag': 'v3.0.1' }
   Plug 'ervandew/supertab'
@@ -236,10 +236,46 @@ endif
 
 colorscheme industry " set a default colorscheme
 
-if exists('$BASE16_THEME') && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
-  let base16_colorspace=256
-  colorscheme base16-$BASE16_THEME
-endif
+" if exists('$BASE16_THEME') && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
+"   let base16_colorspace=256
+"   colorscheme base16-$BASE16_THEME
+" endif
+
+let g:default_theme = "base16-tomorrow-night"
+
+function! TintyGetTheme()
+  let l:theme_name = system("tinty current &> /dev/null && tinty current")
+
+  if v:shell_error != 0
+    return g:default_theme
+  else
+    return trim(l:theme_name)
+  endif
+endfunction
+
+function! TintyHandleFocusGained()
+  let l:new_theme_name = TintyGetTheme()
+  let l:current_theme_name = g:colors_name
+
+  if l:current_theme_name != l:new_theme_name
+    execute "colorscheme " . l:new_theme_name
+  endif
+endfunction
+
+function! TintyMain()
+  set termguicolors
+  let g:tinted_colorspace = 256
+  let l:current_theme_name = TintyGetTheme()
+
+  execute "colorscheme " . l:current_theme_name
+
+  augroup TintyThemeChange
+    autocmd!
+    autocmd FocusGained * call TintyHandleFocusGained()
+  augroup END
+endfunction
+
+call TintyMain()
 
 let s:uname = system("uname")
 if has("gui_running")
