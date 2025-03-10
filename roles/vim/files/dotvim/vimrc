@@ -340,7 +340,7 @@ if has("statusline") && !&cp
 endif
 
 " relative line numbers on
-set rnu
+" set rnu
 
 " line numbers on by default
 set nu
@@ -557,7 +557,7 @@ nm <silent> <Leader>js :% !bb -i '(-> (json/parse-string (apply str *input*)) (j
 nno Y y$
 
 " join without moving cursor position
-nno J mzJ`z
+" nno J mzJ`z
 
 " search and focus cursor to middle of screen
 nno n nzzzv
@@ -771,5 +771,9 @@ function! UpdateTags()
   let resp = system(cmd)
 endfunction
 
-autocmd BufWritePost * :call UpdateTags()
+" update tags on save
+" autocmd BufWritePost * :call UpdateTags()
+
+" update tags on demand
+nnoremap <Leader>ut :call UpdateTags()<CR>
 

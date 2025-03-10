@@ -2,7 +2,8 @@
 let mapleader = " "
 
 " relative line numbers
-set rnu
+" set rnu
+
 " line numbers
 set nu
 
