@@ -12,7 +12,8 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_int
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 
-export TERM='xterm-256color'
+# interfering with tmux term setting
+# export TERM='xterm-256color'
 
 export CLICOLOR=1
 
@@ -26,8 +27,11 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
-[ -n "$PS1" ] && \
-  [ "$(which tinty)" ] && \
-    tinty apply base16-tomorrow-night && \
-    export BASE16_THEME=tomorrow-night
+# [ -n "$PS1" ] && \
+#   [ "$(which tinty)" ] && \
+#     tinty apply base16-tomorrow-night && \
+#     export BASE16_THEME=tomorrow-night
+
+# Added by Toolbox App
+export PATH="$PATH:/Users/dan.sapala/Library/Application Support/JetBrains/Toolbox/scripts"
 

@@ -48,7 +48,8 @@ ulimit -u 2048
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 
-export TERM='xterm-256color'
+# interfering with tmux term setting
+# export TERM='xterm-256color'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -99,7 +100,7 @@ export rvmsudo_secure_path=0
 
 export HOMEBREW_GITHUB_API_TOKEN="$(cat $HOME/.github-personal-access-token | tr -d '\n')"
 export GITHUB_TOKEN="$(cat $HOME/.github-personal-access-token | tr -d '\n')"
-export OCTOKIT_ACCESS_TOKEN="${GITHUB_TOKEN}"
+# export OCTOKIT_ACCESS_TOKEN="${GITHUB_TOKEN}"
 
 # export POW_DOMAINS='dev'
 
@@ -295,6 +296,9 @@ alias diff-favorite="diff --color=always --exclude=.git -r -W 250 -y --suppress-
 complete -C "${HOME}/bin/terraform" terraform
 alias tf=terraform
 complete -C "${HOME}/bin/terraform" tf
+
+complete -C "${HOMEBREW_PREFIX}/bin/terramate" terramate
+
 alias ssh-no-config-or-agent="ssh -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias scp-no-config-or-agent="scp -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias ssh-force-password="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
@@ -366,4 +370,34 @@ export NVM_DIR="$HOME/.nvm"
 
 # make sure home bin is first
 export PATH="${HOME}/bin:$PATH"
+
+# Tinty isn't able to apply environment variables to your shell due to
+# the way shell sub-processes work. This is a work around by running
+# Tinty through a function and then executing the shell scripts.
+tinty_source_shell_theme() {
+  newer_file=$(mktemp)
+  tinty "$@"
+  subcommand="$1"
+
+  if [ "$subcommand" = "apply" ] || [ "$subcommand" = "init" ]; then
+    tinty_data_dir="${XDG_DATA_HOME:-$HOME/.local/share}/tinted-theming/tinty"
+
+    find "$tinty_data_dir" -maxdepth 1 -type f -name "*.sh" -newer "$newer_file" -print
+
+    while read -r script; do
+      # shellcheck disable=SC1090
+      . "$script"
+    done < <(find "$tinty_data_dir" -maxdepth 1 -type f -name "*.sh" -newer "$newer_file")
+
+    unset tinty_data_dir
+  fi
+
+  unset subcommand
+}
+
+if [ -n "$(command -v 'tinty')" ] && ! alias tinty >/dev/null 2>&1; then
+  tinty_source_shell_theme "init" > /dev/null
+
+  alias tinty=tinty_source_shell_theme
+fi
 
