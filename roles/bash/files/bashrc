@@ -401,3 +401,7 @@ if [ -n "$(command -v 'tinty')" ] && ! alias tinty >/dev/null 2>&1; then
   alias tinty=tinty_source_shell_theme
 fi
 
+function print-path() {
+  echo "$PATH" | tr ':' '\n'
+}
+
