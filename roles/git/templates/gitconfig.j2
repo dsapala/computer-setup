@@ -63,7 +63,8 @@
 [merge]
 	keepBackup = false
 	tool = vimdiff
-	conflictstyle = diff3
+	#conflictstyle = diff3
+	conflictstyle = zdiff3
 [mergetool]
 	prompt = false
 [mergetool "sourcetree"]
@@ -78,7 +79,8 @@
 	excludesfile = ~/.gitignore_global
 	trustctime = false
 	ignorecase = false
-	pager = less -R
+	#pager = less -R
+	pager = delta
 	editor = vim
 [rerere]
 	enabled = 1
@@ -109,4 +111,8 @@
 # interferes with pre-commit
 # [log]
 # 	showSignature = true
-
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection

@@ -29,6 +29,7 @@ homebrew_installed_packages:
   - bash
   - bash-completion@2
   - borkdude/brew/babashka
+  - certstrap
   - cfssl
   - clojure-lsp/brew/clojure-lsp-native
   - clojure/tools/clojure
@@ -42,8 +43,10 @@ homebrew_installed_packages:
   - diffutils
   - direnv
   - dos2unix
+  - duckdb
   - emscripten
   - findutils
+  - font-hack-nerd-font
   - gawk
   - gettext
   - gh
@@ -122,7 +125,7 @@ homebrew_installed_packages:
   - terraform-docs
   - tflint
   - tfswitch
-  - the_silver_searcher
+  - tgswitch
   - tig
   - tilt-dev/tap/ctlptl
   - tilt-dev/tap/tilt

@@ -35,6 +35,7 @@ homebrew_taps:
   - minamijoyo/hcledit
   - tilt-dev/tap
   - tinted-theming/tinted
+  - warrensbox/tap
 
 homebrew_installed_packages:
   - ack
@@ -44,6 +45,7 @@ homebrew_installed_packages:
   - bash
   - bash-completion@2
   - borkdude/brew/babashka
+  - certstrap
   - cfssl
   - clojure-lsp/brew/clojure-lsp-native
   - clojure/tools/clojure
@@ -54,10 +56,13 @@ homebrew_installed_packages:
   - crane
   - ctags
   - curl
+  - delta
   - diffutils
   - direnv
   - dos2unix
+  - duckdb
   - findutils
+  - font-hack-nerd-font
   - gawk
   - gettext
   - gh
@@ -141,7 +146,8 @@ homebrew_installed_packages:
   - tree
   - vault
   - vim
-  - warrensbox/tap/tfswitch
+  - tfswitch
+  - tgswitch
   - watch
   - wget
   - wrk
