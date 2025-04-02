@@ -28,3 +28,7 @@ if command -v jira 1>/dev/null 2>&1; then
   eval "$(jira --completion-script-bash)"
 fi
 
+function fly-atd() { fly -t atd "$@"; }
+function fly-dna-core() { fly -t dna-core "$@"; }
+function fly-lg() { fly -t lightning-grader "$@"; }
+
