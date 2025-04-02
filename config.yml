@@ -56,7 +56,6 @@ homebrew_installed_packages:
   - crane
   - ctags
   - curl
-  - delta
   - diffutils
   - direnv
   - dos2unix
