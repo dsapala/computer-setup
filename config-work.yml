@@ -45,6 +45,7 @@ homebrew_installed_packages:
   - dos2unix
   - duckdb
   - emscripten
+  - fd
   - findutils
   - font-hack-nerd-font
   - gawk
@@ -82,6 +83,7 @@ homebrew_installed_packages:
   - iperf
   - iperf3
   - jd
+  - jfrog-cli
   - jmespath/jmespath/jp
   - jmeter
   - jq
