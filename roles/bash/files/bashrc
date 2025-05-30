@@ -1,18 +1,26 @@
-# ex: ts=2 sw=2 et filetype=sh
+# shellcheck shell=bash
+
+export BASH_CONF='bashrc'
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+case "$-" in
+  *i*) (>&2 echo 'bashrc sourced in interactive shell') ;;
+  *)	 (>&2 echo 'bashrc sourced in noninteractive shell') ;;
+esac
+
+export HOMEBREW_PREFIX="/usr/local"
 if [ "$(uname -p)" == 'arm' ]; then
-  export HOMEBREW_PREFIX="/opt/homebrew";
-elif [ "$(uname -p)" == 'i386' ]; then
-  export HOMEBREW_PREFIX="/opt/local";
+  export HOMEBREW_PREFIX="/opt/homebrew"
 fi
 
-export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
-export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew";
-export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
-export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
+export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+export HOMEBREW_BIN="${HOMEBREW_PREFIX}/bin"
+export HOMEBREW_SBIN="${HOMEBREW_PREFIX}/sbin"
+PATH="${HOMEBREW_BIN}:${HOMEBREW_SBIN}${PATH+:$PATH}"
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_UPGRADE=1
@@ -20,26 +28,27 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_NO_ANALYTICS=1
 
 if type brew &>/dev/null; then
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+  if [ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]; then
+    # shellcheck disable=SC1091
     . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
   else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && . "$COMPLETION"
+    for completion in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      # shellcheck disable=SC1090
+      [ -r "$completion" ] && . "$completion"
     done
   fi
 fi
 
+# Jetbrains Toolbox App
+PATH="${PATH}:${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
+
 # 1password
 export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
-# shellcheck disable=SC1091
-. "${HOME}/.config/op/plugins.sh"
+export XDG_CONFIG_HOME="$HOME/.config"
 
-# for compatibility with tmux since the new (@2) bash completion script
-# won't re-source when tmux opens
-# for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-#   [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-# done
+# shellcheck disable=SC1091
+. "${XDG_CONFIG_HOME}/op/plugins.sh"
 
 # set limits per session just in case
 ulimit -n 65536
@@ -48,61 +57,36 @@ ulimit -u 2048
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 
-# interfering with tmux term setting
-# export TERM='xterm-256color'
-
-export XDG_CONFIG_HOME="$HOME/.config"
+export JAVA_VERSION=23.0.2
 
 # mac built-in java
 # export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 
-# current oracle java
-#export JAVA_HOME="$(/usr/libexec/java_home)"
+export JAVA_HOME
+JAVA_HOME="$(/usr/libexec/java_home)"
 
-# specific oracle java version
-# export JAVA_HOME="$(/usr/libexec/java_home -v 1.8.0_101)"
-# export JAVA_HOME="$(/usr/libexec/java_home -v 1.8.0_291)"
-# export JAVA_HOME="$(/usr/libexec/java_home -v 1.7.0_80)"
-# export JAVA_HOME="$(/usr/libexec/java_home -v 10.0.1)"
-# export JAVA_HOME="$(/usr/libexec/java_home -v 12.0.2)"
-# export JAVA_HOME="$(/usr/libexec/java_home -v 13.0.2)"
-# export JAVA_HOME="$(/usr/libexec/java_home -v 16.0.1)"
+# # for a specific java version
+# JAVA_HOME="$(/usr/libexec/java_home -v 1.8.0_101)"
 
-# export NODE_PATH=/usr/local/lib/node
-# export NODEJS_BIN=/usr/local/share/npm/bin
-export ANT_HOME=/usr/share/ant/
-export MAVEN_HOME=/usr/share/maven/
+# go install golang.org/dl/go1.23.5@latest
+# go1.23.5 download
 
-export GOPATH="$HOME/go"
+[ -z "${GOVERSION:-}" ] && export GOVERSION=go1.24.3
+export GOHOME="${HOME}/go"
+export GOSDK="${HOME}/sdk"
+export GO="${GOSDK}/${GOVERSION}/bin/go"
+export GOFMT="${GOSDK}/${GOVERSION}/bin/gofmt"
+export GOROOT="${GOSDK}/${GOVERSION}"
 
-export PATH="$PATH:$NODEJS_BIN:$(brew --prefix)/opt/go/libexec/bin:$GOPATH/bin"
+export PATH="${GOROOT}/bin:${GOHOME}/bin:${HOMEBREW_PREFIX}/opt/go/libexec/bin:${PATH}"
 
-### Added by the Heroku Toolbelt
-# export PATH="/usr/local/heroku/bin:$PATH"
+export OpenCV_DIR="${HOMEBREW_PREFIX}/Cellar/opencv/2.4.9"
 
-export JBOSS_HOME=$(brew --prefix)/opt/wildfly-as/libexec
-export PATH=${PATH}:${JBOSS_HOME}/bin
+export EDITOR='nvim'
 
-# export PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin:$PATH
-
-export GROOVY_HOME="$(brew --prefix)/opt/groovy/libexec"
-export GRIFFON_HOME="$(brew --prefix)/Cellar/griffon/1.1.0/libexec"
-export GRAILS_HOME="$(brew --prefix)/opt/grails/libexec"
-export CATALINA_HOME="$(brew --prefix)/Cellar/tomcat/7.0.42/libexec"
-
-export OpenCV_DIR="$(brew --prefix)/Cellar/opencv/2.4.9"
-
-export EDITOR='vim'
-
-export COFFEELINT_CONFIG=~/.coffeelint-config.json
-
-export rvmsudo_secure_path=0
-
-export HOMEBREW_GITHUB_API_TOKEN="$(cat $HOME/.github-personal-access-token | tr -d '\n')"
-export GITHUB_TOKEN="$(cat $HOME/.github-personal-access-token | tr -d '\n')"
-# export OCTOKIT_ACCESS_TOKEN="${GITHUB_TOKEN}"
-
-# export POW_DOMAINS='dev'
+export GITHUB_TOKEN
+GITHUB_TOKEN="$(tr -d '\n' < "$HOME/.github-personal-access-token")"
+export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
 
 # colorize the Terminal
 export CLICOLOR=1;
@@ -115,9 +99,11 @@ export CXX=/usr/bin/clang++
 # direnv
 eval "$(direnv hook bash)"
 
-alias sb='source ~/.bashrc'
+alias sbp='. ${HOME}/.bash_profile'
+alias sbrc='. ${HOME}/.bashrc'
 alias ll='ls -al'
 alias cs='printf "\033c"'
+# shellcheck disable=SC2142 # these aren't positional params
 alias mkt="make -qp | awk -F':' '/^[a-zA-Z0-9][^\$\#\\/\\t=]*:([^=]|$)/ {split(\$1,A,/ /);for(i in A)print A[i]}' | sort -u"
 alias sort-ips="sort -t . -k 3,3n -k 4,4n"
 alias review='rg -A 3 "(FIX|NOTE|BUG|REVIEW|TODO|HACK|OPTIMIZE):?\s+"'
@@ -126,12 +112,13 @@ alias tf-clean='find . -type d -name ".terraform" -exec rm -rf "{}" \+ -print'
 alias tflock-clean='find . -type f -name ".terraform.lock.hcl" -exec rm -rf "{}" \+ -print'
 
 # git
-if [ -f "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
-  . "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
+if [ -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
+  # shellcheck disable=SC1091
+  . "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh"
   PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 fi
 
-# checkout all remote branches
+# check out all remote branches
 # git branch -a | grep -v HEAD | perl -ne 'chomp($_); s|^\*?\s*||; if (m|(.+)/(.+)| && not $d{$2}) {print qq(git branch --track $2 $1/$2\n)} else {$d{$_}=1}' | csh -xfs
 
 alias gst='git status'
@@ -201,87 +188,93 @@ __git_complete gsth _git_stash
 
 export PAGER=less
 export LESS="-NiSR"
+# shellcheck disable=SC2139 # we want this to expand when defined
 alias less="less ${LESS}"
 
 complete -C aws_completer aws
 
 export AWS_PAGER=
 
-export AWS_PAGER=
-export MONO_GAC_PREFIX="/usr/local"
-
 export HISTFILESIZE=9999999
 export HISTSIZE=9999999
+
 # no duplicate entries
 export HISTCONTROL=ignoredups:erasedups:ignorespace
+
 # append to history, don't overwrite it
 shopt -s histappend
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-export PATH=$PATH:/opt/google/google-cloud-sdk/bin
+GCP_SDK_HOME="/opt/google/google-cloud-sdk"
+PATH="${PATH}:${GCP_SDK_HOME}/bin"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google/google-cloud-sdk/path.bash.inc' ]; then . '/opt/google/google-cloud-sdk/path.bash.inc'; fi
+# shellcheck disable=SC1091
+[ -f "${GCP_SDK_HOME}/path.bash.inc" ] && . "${GCP_SDK_HOME}/path.bash.inc"
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/opt/google/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/google/google-cloud-sdk/completion.bash.inc'; fi
+# shellcheck disable=SC1091
+[ -f "${GCP_SDK_HOME}/completion.bash.inc" ] && . "${GCP_SDK_HOME}/completion.bash.inc"
 
 gcloud_docker () {
-  local key="${1}"
-  local credpath=/root/credentials.json
-  local entrypoint=$(mktemp)
-  local entrypointpath=/root/entrypoint.sh
-  cat <<'EOF' > ${entrypoint}
+  local key credpath entrypoint entrypointpath
+  key="$1"
+  credpath=/root/credentials.json
+  entrypoint="$(mktemp)"
+  entrypointpath=/root/entrypoint.sh
+  cat > "$entrypoint" <<'EOF'
 #!/bin/bash
 set -o errexit
 set -o xtrace
 gcloud auth activate-service-account --key-file=/root/credentials.json
 exec "$@"
 EOF
-  chmod 711 ${entrypoint}
-  touch ${HOME}/.gcloud-docker-bash_history
-  chmod 600 ${HOME}/.gcloud-docker-bash_history
+  chmod 711 "$entrypoint"
+  touch "${HOME}/.gcloud-docker-bash_history"
+  chmod 600 "${HOME}/.gcloud-docker-bash_history"
   docker run -it --rm -w "/root" \
-    -v ${HOME}/.gcloud-docker-bash_history:/root/.bash_history \
-    -v ${HOME}/.ssh:/root/.ssh:ro \
-    -v ${key}:${credpath}:ro \
-    -v ${entrypoint}:${entrypointpath}:ro \
-    --entrypoint ${entrypointpath} google/cloud-sdk /bin/bash
+    -v "${HOME}/.gcloud-docker-bash_history:/root/.bash_history" \
+    -v "${HOME}/.ssh:/root/.ssh:ro" \
+    -v "${key}:${credpath}:ro" \
+    -v "${entrypoint}:${entrypointpath}:ro" \
+    --entrypoint "$entrypointpath" google/cloud-sdk /bin/bash
 }
 
 # rancher desktop
 if [ -d "${HOME}/.rd/bin/docker" ]; then
-  export PATH="${HOME}/.rd/bin:${PATH}"
+  PATH="${HOME}/.rd/bin:${PATH}"
 fi
 
 # docker desktop
 if [ -d "${HOME}/.docker/bin" ]; then
-  export PATH="${HOME}/.docker/bin:$PATH"
+  PATH="${HOME}/.docker/bin:${PATH}"
 fi
 
 # kubernetes
-source <(kubectl completion bash)
+if type kubectl &>/dev/null; then
+  # shellcheck disable=SC1090
+  source <(kubectl completion bash)
+fi
 
 # helm
-export HELM_HOME=$HOME/.helm
+export HELM_HOME="${HOME}/.helm"
 
 # tmux
 tmux_colors() {
   for i in {0..255}; do
-    printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n";
+    printf "\x1b[38;5;%smcolour%s\x1b[0m\n" "$i" "$i"
   done
 }
-
 alias tmux-colors=tmux_colors
 
 _tma() {
-  tmux_sessions="$(tmux ls -F '#S' | xargs)"
-
-  local cur=${COMP_WORDS[COMP_CWORD]}
-  COMPREPLY=( $(compgen -W "$tmux_sessions" -- "$cur") )
+  local -r tmux_sessions="$(tmux ls -F '#S' | xargs)"
+  mapfile -t COMPREPLY < <(compgen -W "$tmux_sessions" -- "${COMP_WORDS[COMP_CWORD]}")
+}
+tma() {
+  tmux attach -t "$1"
 }
 complete -F _tma tma
-alias tma='tmux attach -t $1'
 alias tmls='tmux ls'
 
 alias sha1sum="shasum"
@@ -291,13 +284,13 @@ alias diff-favorite="diff --color=always --exclude=.git -r -W 250 -y --suppress-
 
 # tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; printf "\n"; rm -f $tmpfile; }
 
-# source /usr/local/bin/virtualenvwrapper.sh
-
 complete -C "${HOME}/bin/terraform" terraform
 alias tf=terraform
 complete -C "${HOME}/bin/terraform" tf
 
-complete -C "${HOMEBREW_PREFIX}/bin/terramate" terramate
+complete -C "${HOME}/bin/terragrunt" terragrunt
+alias tg=terragrunt
+complete -C "${HOME}/bin/terragrunt" tg
 
 alias ssh-no-config-or-agent="ssh -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias scp-no-config-or-agent="scp -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
@@ -312,64 +305,81 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
 ## krew bin
-export PATH="${PATH}:${HOME}/.krew/bin"
+if type krew &>/dev/null; then
+  PATH="${PATH}:${HOME}/.krew/bin"
+fi
 
 ## temp bin
-export PATH="/opt/bin:$PATH"
+PATH="/opt/bin:${PATH}"
 
 ## vim iced
-# export PATH=$PATH:${HOME}/.janus/vim-iced/bin
+# PATH=${PATH}:${HOME}/.janus/vim-iced/bin
 
 # Postgres.app
-export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+PG_APP_BIN_PATH="/Applications/Postgres.app/Contents/Versions/latest/bin"
+[ -d "$PG_APP_BIN_PATH" ] && PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:${PATH}"
+
+export NVM_DIR="$HOME/.nvm"
+# this loads nvm
+# shellcheck disable=SC1091
+[ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ] && . "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
+# this loads nvm bash_completion
+# shellcheck disable=SC1091
+[ -s "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && . "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
 
 if [ -f "${HOME}/.profile-work/bashrc" ]; then
   export PROFILE=work
+  # shellcheck disable=SC1091
   source "${HOME}/.profile-work/bashrc"
+# TODO: fix this
+# else
+#   export HOMEBREW_GITHUB_API_TOKEN="$(cat $HOME/.github-personal-access-token | tr -d '\n')"
+#   export GITHUB_TOKEN="$(cat $HOME/.github-personal-access-token | tr -d '\n')"
+fi
+
+# export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+# export PYTHONPATH=$(brew --prefix)/lib/python3.6/site-packages
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+alias python=/usr/bin/python3
+export PYTHONSTARTUP="${HOME}/.pythonrc.py"
+export PYENV_ROOT="${HOME}/.pyenv"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  PATH="${PYENV_ROOT}/bin:${PATH}"
+  eval "$(pyenv init -)"
+fi
+
+if [ -f "${HOMEBREW_PREFIX}/opt/gnu-getopt/bin/getopt" ]; then
+  PATH="${HOMEBREW_PREFIX}/opt/gnu-getopt/bin:${PATH}"
 fi
 
 ## clean the PATH
 clean_path() {
   if [ -n "$PATH" ]; then
     old_PATH=$PATH:
-    PATH=
+    new_PATH=
+
     while [ -n "$old_PATH" ]; do
-      x=${old_PATH%%:*}    # the first remaining entry
-      case $PATH: in
-        *:"$x":*) ;;       # already there
-        *) PATH=$PATH:$x;; # not there yet
+      entry=${old_PATH%%:*}    # the first remaining entry
+
+      if [ -z "${entry:-}" ]; then
+        # empty entry, skip it
+        old_PATH=${old_PATH#*:}
+        continue
+      fi
+
+      case $new_PATH: in
+        *:"$entry":* | "$entry":* | *:"$entry") ;; # already there
+        *) new_PATH=$new_PATH:$entry ;; # not there yet
       esac
+
       old_PATH=${old_PATH#*:}
     done
-    export PATH=${PATH#:}
-    unset old_PATH x
+
+    export PATH=${new_PATH#:}
+    unset  old_PATH new_PATH entry
   fi
 }
-
-clean_path
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
-
-# export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
-# export PYTHONPATH=$(brew --prefix)/lib/python3.6/site-packages
-# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-alias python=/usr/bin/python3
-export PYTHONSTARTUP=$HOME/.pythonrc.py
-export PYENV_ROOT=$HOME/.pyenv
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  export PATH="${PYENV_ROOT}/bin:$PATH"
-  eval "$(pyenv init -)"
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ] && . "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && . "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# make sure home bin is first
-export PATH="${HOME}/bin:$PATH"
 
 # Tinty isn't able to apply environment variables to your shell due to
 # the way shell sub-processes work. This is a work around by running
@@ -401,7 +411,14 @@ if [ -n "$(command -v 'tinty')" ] && ! alias tinty >/dev/null 2>&1; then
   alias tinty=tinty_source_shell_theme
 fi
 
-function print-path() {
-  echo "$PATH" | tr ':' '\n'
+pth() {
+  echo "$PATH" | tr ':' '\n' | xargs -I'{}' printf '\- {}\n'
 }
+
+clean_path
+
+# make sure home bin is first
+export PATH="${HOME}/bin:${PATH}"
+
+# ex: ts=2 sw=2 et filetype=sh
 

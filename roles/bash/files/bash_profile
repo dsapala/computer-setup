@@ -1,37 +1,30 @@
-# ex: ts=2 sw=2 et filetype=sh
+# shellcheck shell=bash
+
+export BASH_CONF='bash_profile'
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 case "$-" in
-  *i*) (>&2 echo 'this shell is interactive') ;;
-  *)	 (>&2 echo 'this shell is NOT interactive') ;;
+  *i*) (>&2 echo 'bash_profile sourced in interactive shell') ;;
+  *)	 (>&2 echo 'bash_profile sourced in noninteractive shell') ;;
 esac
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
+# shellcheck disable=SC1091
+test -r "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
 
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 
-# interfering with tmux term setting
-# export TERM='xterm-256color'
-
+# colorize the Terminal
 export CLICOLOR=1
 
 stty stop undef
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-  # include .bashrc if it exists
-  if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.bashrc"
-  fi
+# if running bash source the bashrc file
+if [ -n "$BASH_VERSION" ] && [ -f "${HOME}/.bashrc" ]; then
+  # shellcheck disable=SC1091
+  . "${HOME}/.bashrc"
 fi
 
-# [ -n "$PS1" ] && \
-#   [ "$(which tinty)" ] && \
-#     tinty apply base16-tomorrow-night && \
-#     export BASE16_THEME=tomorrow-night
-
-# Added by Toolbox App
-export PATH="$PATH:/Users/dan.sapala/Library/Application Support/JetBrains/Toolbox/scripts"
+# ex: ts=2 sw=2 et filetype=sh
 

@@ -1,18 +1,11 @@
-# ex: ts=2 sw=2 et filetype=sh
+# shellcheck shell=bash
+
+# TODO: fix this
+# export GITHUB_TOKEN
+# GITHUB_TOKEN="$(op item get 'Github' --vault 'Employee' --fields label=token --format json | jq -ecr '.value')"
+# export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
 
 export GOOGLE_SSH_KEY=~/.ssh/id_ed25519
-
-# go install golang.org/dl/go1.23.5@latest
-# go1.23.5 download
-
-[ -z "${GOVERSION:-}" ] && export GOVERSION=go1.23.5
-export GOHOME="${HOME}/go"
-export GOSDK="${HOME}/sdk"
-export GO="${GOSDK}/${GOVERSION}/bin/go"
-export GOFMT="${GOSDK}/${GOVERSION}/bin/gofmt"
-export GOROOT="${GOSDK}/${GOVERSION}"
-
-export PATH="${GOROOT}/bin:$PATH"
 
 # shellcheck disable=SC3044
 complete -C "${HOMEBREW_PREFIX}/bin/boundary" boundary
@@ -31,4 +24,6 @@ fi
 function fly-atd() { fly -t atd "$@"; }
 function fly-dna-core() { fly -t dna-core "$@"; }
 function fly-lg() { fly -t lightning-grader "$@"; }
+
+# ex: ts=2 sw=2 et filetype=sh
 
