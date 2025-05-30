@@ -9,17 +9,6 @@ case "$-" in
   *)	 (>&2 echo 'bash_profile sourced in noninteractive shell') ;;
 esac
 
-# shellcheck disable=SC1091
-test -r "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
-
-export LANG=en_US.UTF-8
-export LC_ALL=$LANG
-
-# colorize the Terminal
-export CLICOLOR=1
-
-stty stop undef
-
 # if running bash source the bashrc file
 if [ -n "$BASH_VERSION" ] && [ -f "${HOME}/.bashrc" ]; then
   # shellcheck disable=SC1091
