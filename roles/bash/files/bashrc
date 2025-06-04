@@ -398,7 +398,7 @@ tinty_source_shell_theme() {
   unset subcommand
 }
 
-if ! command -v tinty 1>/dev/null 2>&1 && ! alias tinty >/dev/null 2>&1; then
+if command -v tinty 1>/dev/null 2>&1 && ! alias tinty >/dev/null 2>&1; then
   tinty_source_shell_theme "init" > /dev/null 2>&1
 
   alias tinty=tinty_source_shell_theme
