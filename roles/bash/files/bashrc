@@ -112,7 +112,7 @@ alias sort-ips="sort -t . -k 3,3n -k 4,4n"
 alias review='rg -A 3 "(FIX|NOTE|BUG|REVIEW|TODO|HACK|OPTIMIZE):?\s+"'
 alias tg-clean='find . \( \( -type d -name ".terragrunt-cache" \) -or \( -type f -name "terragrunt-debug.tfvars.json" \) \) -exec rm -rf "{}" \+ -print'
 alias tf-clean='find . -type d -name ".terraform" -exec rm -rf "{}" \+ -print'
-alias tflock-clean='find . -type f -name ".terraform.lock.hcl" -exec rm -rf "{}" \+ -print'
+alias tf-lock-clean='find . -type f -name ".terraform.lock.hcl" -exec rm -rf "{}" \+ -print'
 
 # git
 if [ -f "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
