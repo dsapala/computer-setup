@@ -1,0 +1,29 @@
+shell = "bash -c '{}'"
+default-theme = "base16-tomorrow-night"
+hooks = ["mkdir -p ~/.config/nvim && ln -sf ${HOME}/.local/share/tinted-theming/tinty/repos/tinted-vim/colors ${HOME}/.config/nvim/colors"]
+
+[[items]]
+path = "https://github.com/tinted-theming/tinted-iterm2"
+name = "tinted-iterm2"
+hook = "sh %f"
+themes-dir = "scripts"
+supported-systems = ["base16", "base24"]
+
+[[items]]
+path = "https://github.com/tinted-theming/tinted-shell"
+name = "tinted-shell"
+themes-dir = "scripts"
+hook = ". %f"
+supported-systems = ["base16", "base24"]
+
+[[items]]
+path = "https://github.com/tinted-theming/tinted-tmux"
+name = "tinted-tmux"
+themes-dir = "colors"
+#hook = "tmux run 2> /dev/null && tmux source-file %f"
+
+[[items]]
+path = "https://github.com/tinted-theming/tinted-vim"
+name = "tinted-vim"
+themes-dir = "colors"
+

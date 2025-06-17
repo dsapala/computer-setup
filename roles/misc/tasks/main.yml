@@ -1,0 +1,21 @@
+---
+- name: create .config dir
+  file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory
+
+- name: create tinted-theming dir
+  file:
+    path: "{{ ansible_env.HOME }}/.config/tinted-theming"
+    state: directory
+
+- name: create tinty dir
+  file:
+    path: "{{ ansible_env.HOME }}/.config/tinted-theming/tinty"
+    state: directory
+
+- name: place config file
+  template:
+    src: config.toml
+    path: "{{ ansible_env.HOME }}/.config/tinted-theming/tinty/config.toml"
+

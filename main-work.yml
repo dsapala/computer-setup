@@ -35,4 +35,6 @@
       tags: ['tmux']
     - role: vim
       tags: ['vim']
+    - role: misc
+      tags: ['misc']
 
