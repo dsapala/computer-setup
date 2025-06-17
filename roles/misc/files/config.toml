@@ -20,7 +20,7 @@ supported-systems = ["base16", "base24"]
 path = "https://github.com/tinted-theming/tinted-tmux"
 name = "tinted-tmux"
 themes-dir = "colors"
-#hook = "tmux run 2> /dev/null && tmux source-file %f"
+hook = "tmux run 2> /dev/null && tmux source-file %f"
 
 [[items]]
 path = "https://github.com/tinted-theming/tinted-vim"
