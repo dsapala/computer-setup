@@ -141,6 +141,8 @@ alias gdfcw='git diff --cached --ws-error-highlight=all'
 __git_complete gdfcw _git_diff
 alias gf='git fetch'
 __git_complete gf _git_fetch
+alias gfa='git fetch --all'
+__git_complete gfa _git_fetch
 alias gpul='git pull'
 __git_complete gpul _git_pull
 alias gpsh='git push'
