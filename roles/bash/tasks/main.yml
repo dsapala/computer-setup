@@ -32,3 +32,18 @@
     dest: "{{ ansible_env.HOME }}/.jira.d/config.yml"
   when: profile == "work"
 
+- name: create bash completion dir
+  file:
+    type: directory
+    path: "{{ ansible_env.HOME }}/.bash-completion.d"
+
+- name: place bash terragrunt completion file
+  copy:
+    src: terragrunt.sh
+    dest: "{{ ansible_env.HOME }}/.bash-completion.d/terragrunt.sh"
+
+- name: place bash terraform completion file
+  copy:
+    src: terraform.sh
+    dest: "{{ ansible_env.HOME }}/.bash-completion.d/terraform.sh"
+

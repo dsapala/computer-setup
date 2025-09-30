@@ -30,6 +30,7 @@ export HOMEBREW_NO_INSTALL_UPGRADE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_NO_ANALYTICS=1
 
+# completions
 if type brew &>/dev/null; then
   if [ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]; then
     # shellcheck disable=SC1091
@@ -40,6 +41,13 @@ if type brew &>/dev/null; then
       [ -r "$completion" ] && . "$completion"
     done
   fi
+fi
+
+if [ -d "${HOME}/bash-completion.d" ]; then
+  for completion in "${HOME}/bash-completion.d/"*; do
+    # shellcheck disable=SC1090
+    [ -r "$completion" ] && . "$completion"
+  done
 fi
 
 # Jetbrains Toolbox App
@@ -288,14 +296,6 @@ alias sha512sum="shasum -a 512"
 alias diff-favorite="diff --color=always --exclude=.git -r -W 250 -y --suppress-common-lines"
 
 # tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; printf "\n"; rm -f $tmpfile; }
-
-complete -C "${HOME}/bin/terraform" terraform
-alias tf=terraform
-complete -C "${HOME}/bin/terraform" tf
-
-complete -C "${HOME}/bin/terragrunt" terragrunt
-alias tg=terragrunt
-complete -C "${HOME}/bin/terragrunt" tg
 
 alias ssh-no-config-or-agent="ssh -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias scp-no-config-or-agent="scp -F /dev/null -o IdentityAgent=none -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
