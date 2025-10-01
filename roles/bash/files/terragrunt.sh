@@ -77,11 +77,13 @@ function _terragrunt_completion {
   if [[ "$prev" =~ -?-([a-z]+-)+dir(ectory)?$ ]]; then
     compopt -o nospace
     mapfile -t COMPREPLY < <(compgen -d -S "/" -- "$cur")
+    return
   fi
 
   # Suggest log levels for --log-level
   if [[ "$prev" == "--log-level" ]]; then
     mapfile -t COMPREPLY < <(compgen -W "$log_levels" -- "$cur")
+    return
   fi
 
   if (( COMP_POINT < ${#COMP_LINE} )); then
