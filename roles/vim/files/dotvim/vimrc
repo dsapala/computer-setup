@@ -388,19 +388,18 @@ no <Leader>nof :set nu!<CR> :set rnu!<CR>
 
 " toggle non-printable chars on and off
 nn <Leader>lt :set list!<CR>
-" a tab should display as "▸",
-" end of line should be displayed as "¬"
-set listchars=tab:▸\ ,eol:¬
-" trailing whitespace as "."
-set listchars+=trail:.
+set listchars=tab:▸\ " a tab should display as "▸"
+set listchars+=eol:¬ " an end-of-line should display as "¬"
+set listchars+=trail:. " trailing spaces as "."
 " the character to show in the last column when wrap is
 " off and the line continues beyond the right of the screen
+" "»"
 set listchars+=extends:»
 " the character to show in the first column when wrap is
 " off and the line continues beyond the left of the screen
+" "«"
 set listchars+=precedes:«
-" visualize nbsp chars
-set listchars+=nbsp:♦
+set listchars+=nbsp:♦ " visualize nbsp chars as "♦"
 " turn non-printable chars off to begin with
 set nolist
 
