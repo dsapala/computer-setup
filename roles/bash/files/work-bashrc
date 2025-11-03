@@ -1,5 +1,10 @@
 # shellcheck shell=bash
 
+case "$-" in
+  *i*) (>&2 echo 'work bashrc sourced in interactive shell') ;;
+  *)   (>&2 echo 'work bashrc sourced in noninteractive shell') ;;
+esac
+
 # TODO: fix this
 # export GITHUB_TOKEN
 # GITHUB_TOKEN="$(op item get 'Github' --vault 'Employee' --fields label=token --format json | jq -ecr '.value')"

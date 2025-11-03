@@ -6,7 +6,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 case "$-" in
   *i*) (>&2 echo 'bash_profile sourced in interactive shell') ;;
-  *)	 (>&2 echo 'bash_profile sourced in noninteractive shell') ;;
+  *)   (>&2 echo 'bash_profile sourced in noninteractive shell') ;;
 esac
 
 # if running bash source the bashrc file

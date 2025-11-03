@@ -6,7 +6,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 case "$-" in
   *i*) (>&2 echo 'bashrc sourced in interactive shell') ;;
-  *)	 (>&2 echo 'bashrc sourced in noninteractive shell') ;;
+  *)   (>&2 echo 'bashrc sourced in noninteractive shell') ;;
 esac
 
 # shellcheck disable=SC1091
@@ -82,7 +82,7 @@ JAVA_HOME="$(/usr/libexec/java_home)"
 # go install golang.org/dl/go1.23.5@latest
 # go1.23.5 download
 
-[ -z "${GOVERSION:-}" ] && export GOVERSION=go1.24.3
+[ -z "${GOVERSION:-}" ] && export GOVERSION=go1.25.1
 export GOHOME="${HOME}/go"
 export GOSDK="${HOME}/sdk"
 export GO="${GOSDK}/${GOVERSION}/bin/go"
@@ -102,7 +102,10 @@ export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
 # colorize the Terminal
 export CLICOLOR=1;
 
-stty stop undef
+# only stop output flow control in interactive shells
+case "$-" in
+  *i*) stty stop undef ;;
+esac
 
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
@@ -132,72 +135,77 @@ fi
 # check out all remote branches
 # git branch -a | grep -v HEAD | perl -ne 'chomp($_); s|^\*?\s*||; if (m|(.+)/(.+)| && not $d{$2}) {print qq(git branch --track $2 $1/$2\n)} else {$d{$_}=1}' | csh -xfs
 
-alias gst='git status'
-alias gsts='git status -s'
-_comp_gst() {
-  local __git_cmd_idx=0
-  _git_status
-} && __git_complete gst _comp_gst \
-  && __git_complete gsts _comp_gst
-alias gdf='git diff'
-__git_complete gdf _git_diff
-alias gdfw='git diff --ws-error-highlight=all'
-__git_complete gdfw _git_diff
-alias gdfc='git diff --cached'
-__git_complete gdfc _git_diff
-alias gdfcw='git diff --cached --ws-error-highlight=all'
-__git_complete gdfcw _git_diff
-alias gf='git fetch'
-__git_complete gf _git_fetch
-alias gfa='git fetch --all'
-__git_complete gfa _git_fetch
-alias gpul='git pull'
-__git_complete gpul _git_pull
-alias gpsh='git push'
-__git_complete gpsh _git_push
-alias gpshh='git push -u origin HEAD'
-__git_complete gpshh _git_push
-alias gfp='git fetch && git pull'
-alias grv='git remote -v'
-alias gaa='git add .'
-__git_complete gaa _git_add
-alias ga='git add'
-alias gau='git add -u'
-_comp_ga() {
-  local __git_cmd_idx=0
-  _git_add
-} && __git_complete ga _comp_ga \
-  && __git_complete gau _comp_ga
-alias gl='git log'
-__git_complete gl _git_log
-alias glp='git log -p'
-__git_complete glp _git_log
-alias gc='git commit'
-__git_complete gc _git_commit
-alias gcm='git commit -m'
-__git_complete gcm _git_commit
-alias gco='git checkout'
-alias gcob='git checkout -b'
-## https://github.com/scop/bash-completion/issues/545
-# __git_complete gco _git_checkout
-_comp_gco() {
-  local __git_cmd_idx=0
-  _git_checkout
-} && __git_complete gco _comp_gco \
-  && __git_complete gcob _comp_gco
-alias gmrg='git merge'
-__git_complete gmrg _git_merge
-alias gbr='git branch'
-_comp_gbr() {
-  local __git_cmd_idx=0
-  _git_branch
-} && __git_complete gbr _comp_gbr
-alias grb='git rebase'
-__git_complete grb _git_rebase
-alias grst='git reset'
-__git_complete grst _git_reset
-alias gsth='git stash'
-__git_complete gsth _git_stash
+# only use my git shortcuts in interactive sessions
+case "$-" in
+  *i*)
+  alias gst='git status'
+  alias gsts='git status -s'
+  _comp_gst() {
+    local __git_cmd_idx=0
+    _git_status
+  } && __git_complete gst _comp_gst \
+    && __git_complete gsts _comp_gst
+  alias gdf='git diff'
+  __git_complete gdf _git_diff
+  alias gdfw='git diff --ws-error-highlight=all'
+  __git_complete gdfw _git_diff
+  alias gdfc='git diff --cached'
+  __git_complete gdfc _git_diff
+  alias gdfcw='git diff --cached --ws-error-highlight=all'
+  __git_complete gdfcw _git_diff
+  alias gf='git fetch'
+  __git_complete gf _git_fetch
+  alias gfa='git fetch --all'
+  __git_complete gfa _git_fetch
+  alias gpul='git pull'
+  __git_complete gpul _git_pull
+  alias gpsh='git push'
+  __git_complete gpsh _git_push
+  alias gpshh='git push -u origin HEAD'
+  __git_complete gpshh _git_push
+  alias gfp='git fetch && git pull'
+  alias grv='git remote -v'
+  alias gaa='git add .'
+  __git_complete gaa _git_add
+  alias ga='git add'
+  alias gau='git add -u'
+  _comp_ga() {
+    local __git_cmd_idx=0
+    _git_add
+  } && __git_complete ga _comp_ga \
+    && __git_complete gau _comp_ga
+  alias gl='git log'
+  __git_complete gl _git_log
+  alias glp='git log -p'
+  __git_complete glp _git_log
+  alias gc='git commit'
+  __git_complete gc _git_commit
+  alias gcm='git commit -m'
+  __git_complete gcm _git_commit
+  alias gco='git checkout'
+  alias gcob='git checkout -b'
+  ## https://github.com/scop/bash-completion/issues/545
+  # __git_complete gco _git_checkout
+  _comp_gco() {
+    local __git_cmd_idx=0
+    _git_checkout
+  } && __git_complete gco _comp_gco \
+    && __git_complete gcob _comp_gco
+  alias gmrg='git merge'
+  __git_complete gmrg _git_merge
+  alias gbr='git branch'
+  _comp_gbr() {
+    local __git_cmd_idx=0
+    _git_branch
+  } && __git_complete gbr _comp_gbr
+  alias grb='git rebase'
+  __git_complete grb _git_rebase
+  alias grst='git reset'
+  __git_complete grst _git_reset
+  alias gsth='git stash'
+  __git_complete gsth _git_stash
+  ;;
+esac
 
 export PAGER=less
 export LESS="-NiSR"
