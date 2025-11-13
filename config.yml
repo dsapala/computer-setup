@@ -33,6 +33,7 @@ homebrew_taps:
   - jmespath/jmespath
   - johanhaleby/kubetail
   - minamijoyo/hcledit
+  - rest-sh/tap
   - tilt-dev/tap
   - tinted-theming/tinted
   - warrensbox/tap
@@ -105,12 +106,14 @@ homebrew_installed_packages:
   - kubectx
   - kubernetes-cli
   - kubetail
+  - lazygit
   - libevent
   - linkerd
   - mcrypt
   - minamijoyo/hcledit/hcledit
   - minikube
   - mtr
+  - mupdf-tools
   - ncdu
   - ncurses
   - netcat
@@ -123,8 +126,10 @@ homebrew_installed_packages:
   - pv
   - pwgen
   - pyenv
+  - raylib
   - readline
   - reattach-to-user-namespace
+  - rest-sh/tap/restish
   - ripgrep
   - rlwrap
   - rsync
@@ -137,13 +142,16 @@ homebrew_installed_packages:
   - telnet
   - terraform-docs
   - tflint
-  - the_silver_searcher
+  - tfswitch
+  - tgswitch
   - tig
   - tilt-dev/tap/ctlptl
   - tilt-dev/tap/tilt
   - tinted-theming/tinted/tinty
   - tmux
   - tree
+  - typescript
+  - uv
   - vault
   - vim
   - tfswitch
@@ -162,6 +170,7 @@ homebrew_cask_apps:
   - audio-hijack
   - bartender
   - beyond-compare
+  - bruno
   - carbon-copy-cloner
   - cinch
   - cursorsense
