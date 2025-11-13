@@ -8,6 +8,7 @@ dockitems_persist: []
 configure_homebrew: true
 homebrew_taps:
   - 1password/tap
+  - atlassian/homebrew-acli
   - carvel-dev/carvel
   - clojure-lsp/brew
   - git-chglog/git-chglog
@@ -24,6 +25,7 @@ homebrew_taps:
 
 homebrew_installed_packages:
   - ack
+  - atlassian/homebrew-acli/acli
   - autoconf
   - automake
   - awscli
