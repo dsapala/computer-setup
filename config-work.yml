@@ -15,7 +15,7 @@ homebrew_taps:
   - hashicorp/tap
   - infrahq/tap
   - jmespath/jmespath
-  - johanhaleby/kubetail
+  # - johanhaleby/kubetail
   - minamijoyo/hcledit
   - rest-sh/tap
   - shivammathur/php
@@ -91,18 +91,18 @@ homebrew_installed_packages:
   - jmeter
   - jq
   - keybase
-  - kops
-  - krew
-  - kubebuilder
-  - kubectx
-  - kubernetes-cli
-  - kubetail
+  # - kops
+  # - krew
+  # - kubebuilder
+  # - kubectx
+  # - kubernetes-cli
+  # - kubetail
   - lazygit
   - libevent
   - linkerd
   - mcrypt
   - minamijoyo/hcledit/hcledit
-  - minikube
+  # - minikube
   - mtr
   - mupdf-tools
   - ncdu
