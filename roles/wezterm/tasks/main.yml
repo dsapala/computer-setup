@@ -1,0 +1,14 @@
+---
+- name: create config dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ ansible_env.HOME }}/.config"
+    - "{{ ansible_env.HOME }}/.config/wezterm"
+
+- name: place wezterm config file
+  copy:
+    src: wezterm.lua
+    dest: "{{ ansible_env.HOME }}/.config/wezterm/wezterm.lua"
+
