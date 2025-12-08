@@ -3,7 +3,7 @@
 set -eu -o pipefail
 
 declare name
-declare editor=vim
+declare editor=nvim
 
 declare positional_args=()
 while [ "$#" -gt 0 ]; do
@@ -42,10 +42,6 @@ fi
 dir="$(sed 's:/*$::' <<<"$dir")"
 readonly dir
 
-if [ -z "${tmx_bottom_pane_size:-}" ]; then
-  tmx_bottom_pane_size="25%"
-fi
-
 if [ -z "${name:-}" ]; then
   name="$(echo "${dir##*/}" | sed 's/[^A-Za-z1-9_-]/_/g' | tr '[:upper:]' '[:lower:]')"
 fi
@@ -54,35 +50,25 @@ readonly name
 has_session_exit_code=0
 set +e; tmux has-session -t="$name" 2> /dev/null || has_session_exit_code="$?"; set -e;
 
-if [ "$has_session_exit_code" -ne "0" ]; then
-  tmux new-session -s "$name" -n editor -d
-  tmux split-window -v -t "$name"
-  tmux select-layout -t "$name" main-horizontal
-  tmux resize-pane -t "$name:1.2" -y "$tmx_bottom_pane_size"
-  tmux send-keys -t "$name:1.1" "cd $dir" C-m
-  tmux send-keys -t "$name:1.1" "$editor" C-m
-  tmux send-keys -t "$name:1.2" "cd $dir" C-m
-  tmux send-keys -t "$name:1.2" "clear" C-m
-  tmux new-window
-  tmux rename-window bash
-  tmux send-keys -t "$name" "cd $dir" C-m
-  tmux send-keys -t "$name" "clear" C-m
-  tmux select-window -t "$name:1"
-  tmux select-pane -t "$name:1.1"
-fi
-
 conf_file="$HOME/.tmux/$name"
 mkdir -p "$HOME/.tmux"
 
 if [ ! -f "$conf_file" ]; then
-  touch "$conf_file"
   echo "# ex: ts=2 sw=2 et filetype=tmux" >> "$conf_file"
 fi
 
 if [ "$has_session_exit_code" -ne "0" ]; then
-  tmux send-keys -t "$name:1.2" "tmux source-file -q $conf_file" C-m
-  tmux send-keys -t "$name:1.2" "tmux display 'using extra source file: $conf_file'" C-m
-  tmux send-keys -t "$name:1.2" "clear" C-m
+  cd "$dir"
+  tmux new-session -s "$name" -n editor -d
+  tmux send-keys -t "$name:1.1" "tmux source-file -q $conf_file" C-m
+  tmux send-keys -t "$name:1.1" "tmux display 'using extra source file: $conf_file'" C-m
+  tmux send-keys -t "$name:1.1" "clear" C-m
+  tmux send-keys -t "$name:1.1" "$editor" C-m
+  tmux new-window
+  tmux rename-window bash
+  tmux send-keys -t "$name" "clear" C-m
+  tmux select-window -t "$name:1"
+  tmux select-pane -t "$name:1.1"
 fi
 
 exec tmux attach -t "$name"
