@@ -1,27 +1,4 @@
 ---
-configure_command_line_tools: true
-
-configure_dock: true
-dockitems_remove:
-  - Launchpad
-  - Safari
-  - Messages
-  - Mail
-  - Maps
-  - Photos
-  - FaceTime
-  - Calendar
-  - Contacts
-  - Reminders
-  - Notes
-  - TV
-  - Music
-  - Podcasts
-  - News
-  - 'App Store'
-  - 'System Preferences'
-dockitems_persist: []
-
 configure_homebrew: true
 homebrew_taps:
   - 1password/tap
@@ -109,7 +86,7 @@ homebrew_installed_packages:
   - lazygit
   - libevent
   - linkerd
-  - mcrypt
+  #- mcrypt
   - minamijoyo/hcledit/hcledit
   - minikube
   - mtr
@@ -129,7 +106,6 @@ homebrew_installed_packages:
   - raylib
   - readline
   - reattach-to-user-namespace
-  - rest-sh/tap/restish
   - ripgrep
   - rlwrap
   - rsync
@@ -150,6 +126,8 @@ homebrew_installed_packages:
   - tinted-theming/tinted/tinty
   - tmux
   - tree
+  - tree-sitter
+  - tree-sitter-cli
   - typescript
   - uv
   - vault
@@ -165,15 +143,15 @@ homebrew_installed_packages:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - 1password
+  #- 1password
   - 1password-cli
   - audio-hijack
   - bartender
   - beyond-compare
-  - bruno
+  #- bruno
   - carbon-copy-cloner
-  - cinch
-  - cursorsense
+  #- cinch
+  #- cursorsense
   - docker
   - evernote
   - farrago
@@ -181,22 +159,24 @@ homebrew_cask_apps:
   - fission
   - gpg-suite-no-mail
   - istat-menus
-  - iterm2
+  #- iterm2
   - jetbrains-toolbox
   - loopback
   - maccy
   - rectangle
+  - restish
   - session-manager-plugin
-  - sizeup
+  #- sizeup
   - snagit
   - soundsource
   - sourcetree
   - spotify
-  - steermouse
+  #- steermouse
   - typora
   - vagrant
   - virtualbox
-  - virtualbox-extension-pack
+  #- virtualbox-extension-pack
   - visual-studio-code
   - wacom-tablet
+  - wezterm
 

@@ -15,7 +15,10 @@
     state: directory
 
 - name: place config file
-  template:
+  copy:
     src: config.toml
-    path: "{{ ansible_env.HOME }}/.config/tinted-theming/tinty/config.toml"
+    dest: "{{ ansible_env.HOME }}/.config/tinted-theming/tinty/config.toml"
+
+- name: tinty sync
+  command: tinty sync
 

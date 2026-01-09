@@ -1,10 +1,4 @@
 ---
-configure_command_line_tools: false
-
-configure_dock: false
-dockitems_remove: []
-dockitems_persist: []
-
 configure_homebrew: true
 homebrew_taps:
   - 1password/tap
@@ -120,7 +114,6 @@ homebrew_installed_packages:
   - raylib
   - readline
   - reattach-to-user-namespace
-  - rest-sh/tap/restish
   - ripgrep
   - rlwrap
   - rsync
@@ -142,6 +135,8 @@ homebrew_installed_packages:
   - tinted-theming/tinted/tinty
   - tmux
   - tree
+  - tree-sitter
+  - tree-sitter-cli
   - typescript
   - uv
   - vault
@@ -161,6 +156,7 @@ homebrew_cask_apps:
   - iterm2
   - maccy
   - rectangle
+  - restish
   - session-manager-plugin
   - visual-studio-code
 

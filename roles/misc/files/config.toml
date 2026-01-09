@@ -9,16 +9,16 @@ themes-dir = "themes/kitty"
 hook = "kitten @ load-config >/dev/null 2>&1 || true"
 supported-systems = ["base16", "base24"]
 
-[[items]]
-path = "https://github.com/tinted-theming/tinted-terminal"
-name = "tinted-terminal-iterm2"
-# themes-dir = "themes/iterm2"
-themes-dir = "themes-16/iterm2-applescripts"
-hook = '''
-command cp -f %f ~/Library/Application\ Support/iTerm2/Scripts/AutoLaunch.scpt \
-  && osascript %f >/dev/null 2>&1 || true
-'''
-supported-systems = ["base16", "base24"]
+#[[items]]
+#path = "https://github.com/tinted-theming/tinted-terminal"
+#name = "tinted-terminal-iterm2"
+## themes-dir = "themes/iterm2"
+#themes-dir = "themes-16/iterm2-applescripts"
+#hook = '''
+#command cp -f %f ~/Library/Application\ Support/iTerm2/Scripts/AutoLaunch.scpt \
+#  && osascript %f >/dev/null 2>&1 || true
+#'''
+#supported-systems = ["base16", "base24"]
 
 [[items]]
 path = "https://github.com/tinted-theming/tinted-terminal"

@@ -6,13 +6,6 @@
     profile: personal
   pre_tasks:
   roles:
-    # NOTE: I shouldn't have to check for true explicitly, but it doesn't work without it
-    - role: elliotweiser.osx-command-line-tools
-      tags: ['command-line-tools']
-      when: ansible_distribution == 'MacOSX' and configure_command_line_tools == true
-    - role: geerlingguy.mac.dock
-      tags: ['dock']
-      when: ansible_distribution == 'MacOSX' and configure_dock == true
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
       when: ansible_distribution == 'MacOSX' and configure_homebrew == true

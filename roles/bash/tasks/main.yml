@@ -22,7 +22,7 @@
 
 - name: create work go-jira dir
   file:
-    type: directory
+    state: directory
     path: "{{ ansible_env.HOME }}/.jira.d"
   when: profile == "work"
 
@@ -34,7 +34,7 @@
 
 - name: create bash completion dir
   file:
-    type: directory
+    state: directory
     path: "{{ ansible_env.HOME }}/.bash-completion.d"
 
 - name: place bash terragrunt completion file

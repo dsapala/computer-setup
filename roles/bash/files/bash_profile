@@ -1,13 +1,17 @@
 # shellcheck shell=bash
 
+# export TERMINFO_DIRS="${HOME}/.terminfo:${HOME}/.local/share/terminfo:${TERMINFO_DIRS}"
+
 export BASH_CONF='bash_profile'
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-case "$-" in
-  *i*) (>&2 echo 'bash_profile sourced in interactive shell') ;;
-  *)   (>&2 echo 'bash_profile sourced in noninteractive shell') ;;
-esac
+if [ -n "${SESSION_DEBUG:-}" ]; then
+  case "$-" in
+    *i*) (>&2 echo 'bash_profile sourced in interactive shell') ;;
+    *)   (>&2 echo 'bash_profile sourced in noninteractive shell') ;;
+  esac
+fi
 
 # if running bash source the bashrc file
 if [ -n "$BASH_VERSION" ] && [ -f "${HOME}/.bashrc" ]; then
