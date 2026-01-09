@@ -1,6 +1,6 @@
 shell = "bash -c '{}'"
 default-theme = "base16-tomorrow-night"
-# hooks = ["mkdir -p ~/.config/nvim && ln -sf ${HOME}/.local/share/tinted-theming/tinty/repos/tinted-vim/colors ${HOME}/.config/nvim/colors"]
+hooks = [ 'echo "$TINTY_SCHEME_ID" > "${HOME}/.config/tinted-theming/theme_name"' ]
 
 [[items]]
 path = "https://github.com/tinted-theming/tinted-terminal"
@@ -26,12 +26,8 @@ name = "tinted-terminal-wezterm"
 themes-dir = "themes/wezterm"
 hook = '''
 ln -sf "${HOME}/.local/share/tinted-theming/tinty/repos/tinted-terminal-wezterm/themes/wezterm" "${HOME}/.config/wezterm/colors" \
-  && wezterm cli set-color-scheme %f >/dev/null 2>&1 || true
+  && touch "${HOME}/.config/wezterm/wezterm.lua"
 '''
-# hook = '''
-# cp %f ~/.config/wezterm/colors/%~nxf >/dev/null 2>&1 || true \
-#   && wezterm cli set-color-scheme %f >/dev/null 2>&1 || true
-# '''
 supported-systems = ["base16", "base24"]
 
 [[items]]

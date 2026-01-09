@@ -6,26 +6,6 @@ config.set_environment_variables = {
 	PATH = "/opt/homebrew/bin:" .. os.getenv("PATH"),
 }
 
-local function apply_current_tinty_theme()
-	local default = "Catppuccin Macchiato"
-	local homedir = os.getenv("HOME")
-	local filename = homedir .. "/.config/tinted-theming/theme_name"
-
-	local file = io.open(filename, "r") -- Open the file in read mode ("r")
-
-	if file then
-		local content = file:read("*all") -- Read the entire file content into a string
-		io.close(file) -- Close the file after reading
-		config.color_scheme = content:gsub("%s+", "")
-		-- return content:gsub("%s+", "") -- Remove any trailing newline or whitespace
-	else
-		wezterm.log_error("Could not open file " .. filename)
-		config.color_scheme = default
-		-- return default
-	end
-end
-apply_current_tinty_theme()
-
 config.font = wezterm.font({
 	family = "JetBrainsMono Nerd Font Mono",
 	weight = "Medium",
@@ -80,5 +60,25 @@ config.keys = {
 		action = wezterm.action.SpawnCommandInNewTab({ cwd = wezterm.home_dir, args = { "nvim", wezterm.config_file } }),
 	},
 }
+
+local function apply_current_tinty_theme()
+	local default = "Catppuccin Macchiato"
+	local homedir = os.getenv("HOME")
+	local filename = homedir .. "/.config/tinted-theming/theme_name"
+
+	local file = io.open(filename, "r") -- Open the file in read mode ("r")
+
+	if file then
+		local content = file:read("*all") -- Read the entire file content into a string
+		io.close(file) -- Close the file after reading
+		config.color_scheme = content:gsub("%s+", "")
+		-- return content:gsub("%s+", "") -- Remove any trailing newline or whitespace
+	else
+		wezterm.log_error("Could not open file " .. filename)
+		config.color_scheme = default
+		-- return default
+	end
+end
+apply_current_tinty_theme()
 
 return config
