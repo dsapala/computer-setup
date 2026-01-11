@@ -152,8 +152,11 @@ homebrew_cask_apps:
   - carbon-copy-cloner
   #- cinch
   #- cursorsense
+  - daisydisk
   - docker
-  - evernote
+  - drivedx
+  - dropbox
+  #- evernote
   - farrago
   - firefox
   - fission
@@ -161,17 +164,21 @@ homebrew_cask_apps:
   - istat-menus
   #- iterm2
   - jetbrains-toolbox
+  - keybase
   - loopback
   - maccy
+  - obsidian
   - rectangle
   - restish
-  - session-manager-plugin
+  #- session-manager-plugin # no longer supported
   #- sizeup
+  - screens
   - snagit
   - soundsource
   - sourcetree
   - spotify
   #- steermouse
+  - tailscale-app
   - typora
   - vagrant
   - virtualbox
