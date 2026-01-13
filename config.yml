@@ -147,26 +147,22 @@ homebrew_cask_apps:
   - 1password-cli
   - a-better-finder-attributes
   - a-better-finder-rename
+  - affinity
   - apparency
   - archaeology
-  - affinity
   - audio-hijack
   - balenaetcher
   - bartender
   - beyond-compare
   - big-mean-folder-machine
-  #- bruno
   - carbon-copy-cloner
   - charles
   - colorsnapper
-  #- cinch
-  #- cursorsense
   - daisydisk
   - docker
   - downie
   - drivedx
   - dropbox
-  #- evernote
   - farrago
   - firefox
   - fission
@@ -174,7 +170,6 @@ homebrew_cask_apps:
   - guitar-pro
   - imageoptim
   - istat-menus
-  #- iterm2
   - jetbrains-toolbox
   - jordanbaird-ice
   - keybase
@@ -192,8 +187,6 @@ homebrew_cask_apps:
   - rectangle
   - restish
   - ripx
-  #- session-manager-plugin # no longer supported
-  #- sizeup
   - screens
   - screens-connect
   - signal
@@ -201,17 +194,25 @@ homebrew_cask_apps:
   - soundsource
   - sourcetree
   - spotify
-  - syncthing
   - suspicious-package
-  #- steermouse
+  - syncthing
   - tailscale-app
-  - typora
   - transcribe
+  - typora
   - vagrant
   - virtualbox
-  #- virtualbox-extension-pack
   - visual-studio-code
   - wacom-tablet
   - wezterm
   - wireshark-app
+
+  #- bruno
+  #- cinch
+  #- cursorsense
+  #- evernote
+  #- iterm2
+  #- session-manager-plugin # no longer supported
+  #- sizeup
+  #- steermouse
+  #- virtualbox-extension-pack
 
