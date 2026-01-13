@@ -143,17 +143,25 @@ homebrew_installed_packages:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  #- 1password
+  - 1password
   - 1password-cli
+  - a-better-finder-attributes
+  - a-better-finder-rename
+  - affinity
   - audio-hijack
+  - balenaetcher
   - bartender
   - beyond-compare
+  - big-mean-folder-machine
   #- bruno
   - carbon-copy-cloner
+  - charles
+  - colorsnapper
   #- cinch
   #- cursorsense
   - daisydisk
   - docker
+  - downie
   - drivedx
   - dropbox
   #- evernote
@@ -161,22 +169,36 @@ homebrew_cask_apps:
   - firefox
   - fission
   - gpg-suite-no-mail
+  - guitar-pro
+  - imageoptim
   - istat-menus
   #- iterm2
   - jetbrains-toolbox
+  - jordanbaird-ice
   - keybase
   - loopback
   - maccy
+  - marked-app
+  - monodraw
   - obsidian
+  - pacifist
+  - paragon-extfs
+  - paragon-ntfs
+  - permute
+  - postgres-unofficial
+  - reaper
   - rectangle
   - restish
+  - ripx
   #- session-manager-plugin # no longer supported
   #- sizeup
   - screens
+  - screens-connect
   - snagit
   - soundsource
   - sourcetree
   - spotify
+  - syncthing
   #- steermouse
   - tailscale-app
   - typora
