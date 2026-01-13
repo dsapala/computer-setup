@@ -147,6 +147,8 @@ homebrew_cask_apps:
   - 1password-cli
   - a-better-finder-attributes
   - a-better-finder-rename
+  - apparency
+  - archaeology
   - affinity
   - audio-hijack
   - balenaetcher
@@ -194,18 +196,22 @@ homebrew_cask_apps:
   #- sizeup
   - screens
   - screens-connect
+  - signal
   - snagit
   - soundsource
   - sourcetree
   - spotify
   - syncthing
+  - suspicious-package
   #- steermouse
   - tailscale-app
   - typora
+  - transcribe
   - vagrant
   - virtualbox
   #- virtualbox-extension-pack
   - visual-studio-code
   - wacom-tablet
   - wezterm
+  - wireshark-app
 
