@@ -17,8 +17,15 @@
 [user]
 	name = Dan Sapala
 	email = dsapala@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBR6N6JX1D4+C/NpQ3DJETJnuRn0yM2J1E7lkDNVAAlZ
 [github]
 	user = dsapala
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+	gpgsign = true
 {% endif %}
 [color]
 	ui = true
