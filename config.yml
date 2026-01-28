@@ -23,6 +23,7 @@ homebrew_installed_packages:
   - bash
   - bash-completion@2
   - borkdude/brew/babashka
+  - btop
   - certstrap
   - cfssl
   - clojure-lsp/brew/clojure-lsp-native
@@ -55,6 +56,7 @@ homebrew_installed_packages:
   - gnu-tar
   - gnutls
   - go
+  - goenv
   - golang-migrate
   - gpg
   - grep

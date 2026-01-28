@@ -357,6 +357,13 @@ export NVM_DIR="$HOME/.nvm"
 # shellcheck disable=SC1091
 [ -s "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && . "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
 
+if command -v goenv 1>/dev/null 2>&1; then
+  export GOENV_PATH_ORDER=front
+  export GOENV_ROOT="${HOME}/.goenv"
+  [ -d "${GOENV_ROOT}/bin" ] && export PATH="${GOENV_ROOT}/bin:${PATH}"
+  eval "$(goenv init - bash)"
+fi
+
 # export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 # export PYTHONPATH=$(brew --prefix)/lib/python3.6/site-packages
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
