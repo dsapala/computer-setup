@@ -50,8 +50,9 @@ readonly name
 has_session_exit_code=0
 set +e; tmux has-session -t="$name" 2> /dev/null || has_session_exit_code="$?"; set -e;
 
-conf_file="$HOME/.tmux/$name"
-mkdir -p "$HOME/.tmux"
+conf_dir="$HOME/.config/tmux/configs"
+mkdir -p "$conf_dir"
+conf_file="${conf_dir}/${name}.conf"
 
 if [ ! -f "$conf_file" ]; then
   echo "# ex: ts=2 sw=2 et filetype=tmux" >> "$conf_file"
